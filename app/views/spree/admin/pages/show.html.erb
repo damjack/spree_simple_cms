@@ -1,0 +1,27 @@
+<h1><%= t(:page) %></h1>
+
+<table>
+	<tr data-hook="name">
+		<th><%= t(:name) %></th>
+		<td>
+			<%= @page.name %>
+		</td>
+	</tr>
+	<tr data-hook="description">
+		<th><%= t(:description) %></th>
+		<td>
+			<%= @page.description %>
+		</td>
+	</tr>
+	<tr data-hook="image">
+		<th><%= t(:image) %></th>
+		<td>
+			<%= image_tag(@page.image.url(:thumbnail)) %>
+		</td>
+	</tr>
+</table>
+
+<p>
+	<%= link_to_edit @page, :class => 'edit_page' %> <%= t(:or) %>
+	<%= link_to t(:back), collection_url %>
+</p>

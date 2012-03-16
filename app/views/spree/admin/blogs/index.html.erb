@@ -1,0 +1,51 @@
+<div class="toolbar" data-hook="toolbar">
+  <ul class="actions">
+    <li>
+      <p><%= button_link_to t(:new_blog), new_object_url, :icon => 'add', :id => 'admin_new_blog_link' %></p>
+    </li>
+  </ul>
+  <br class="clear" />
+</div>
+
+<h1><%= t(:listing_blogs) %></h1>
+
+<table class="index" id="listing_blogs" data-hook>
+  <thead>
+    <tr data-hook="admin_blogs_index_headers">
+      <th><%= sort_link @search,:name, t(:blog), {}, {:title => 'blog_name_title'} %></th>
+	  <th><%= t(:published_at) %></th>
+      <th data-hook="admin_users_index_header_actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @blogs.each do |blog|%>
+      <tr id="<%= dom_id blog %>" data-hook="admin_blogs_index_rows">
+        <td width="270px" class='blog_name'><%=link_to blog.name, object_url(blog) %></td>
+		<td width="80px" class='blog_published_at'><%= l published_at %></td>
+        <td data-hook="admin_blogs_index_row_actions">
+          <%= link_to_edit blog, :class => 'edit' %> &nbsp;
+          <%= link_to_delete blog %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @blogs %>
+
+
+<% content_for :sidebar do %>
+  <div class="box" data-hook="admin_blogs_index_search">
+    <h3><%= t(:search) %></h3>
+    <% @search = Spree::Blog.search %>
+    <%= form_for [:admin, @search] do |f| %>
+      <p>
+        <%= t(:name) %><br />
+        <%= f.text_field :name_contains, :size =>18 %>
+      </p>
+      <div data-hook="admin_blogs_index_search_buttons">
+        <p><%= button t(:search) %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>

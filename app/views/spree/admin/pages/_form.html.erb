@@ -1,0 +1,12 @@
+<div data-hook="admin_page_form_fields">
+	<%= f.inputs do %>
+		<%= f.input :name %>
+		<%= f.cktext_area :content, :input_html => { :value => @page.content }, :label => t(:content) %>
+		<%= f.input :published_at, :as => :string, :input_html => { :class => 'datepicker'},:label => t(:published_at) %>
+		
+		<%= f.input :image_width %>
+		<%= f.input :image_height %>
+
+		<%= f.input :image, :as => :file, :label => I18n.t("simple_cms.image.one").capitalize, :hint => f.object.image.blank? ? f.template.content_tag(:span, t("simple_cms.no_image")) : f.template.image_tag(f.object.image.url(:thumbnail)) %>
+	<% end %>
+</div>

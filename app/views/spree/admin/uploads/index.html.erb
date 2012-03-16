@@ -1,0 +1,51 @@
+<div class="toolbar" data-hook="toolbar">
+  <ul class="actions">
+    <li>
+      <p><%= button_link_to t(:new_upload), new_object_url, :icon => 'add', :id => 'admin_new_upload_link' %></p>
+    </li>
+  </ul>
+  <br class="clear" />
+</div>
+
+<h1><%= t(:listing_uploads) %></h1>
+
+<table class="index" id="listing_uploads" data-hook>
+  <thead>
+    <tr data-hook="admin_uploads_index_headers">
+      <th><%= sort_link @search,:attachment_name, t(:upload), {}, {:title => 'upload_name_title'} %></th>
+	  <th><%= t(:thumbnail) %></th>
+      <th data-hook="admin_users_index_header_actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @uploads.each do |upload|%>
+      <tr id="<%= dom_id upload %>" data-hook="admin_uploads_index_rows">
+        <td class='upload_name'><%=link_to upload.attachment_name, object_url(upload) %></td>
+		<td class='upload_published_at'><%= image_tag(upload.attachment.url(:thumbnail)) %></td>
+        <td data-hook="admin_uploads_index_row_actions">
+          <%= link_to_edit upload, :class => 'edit' %> &nbsp;
+          <%= link_to_delete upload %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @uploads %>
+
+
+<% content_for :sidebar do %>
+  <div class="box" data-hook="admin_uploads_index_search">
+    <h3><%= t(:search) %></h3>
+    <% @search = Spree::Upload.search %>
+    <%= form_for [:admin, @search] do |f| %>
+      <p>
+        <%= t(:name) %><br />
+        <%= f.text_field :attachment_name_contains, :size =>18 %>
+      </p>
+      <div data-hook="admin_uploads_index_search_buttons">
+        <p><%= button t(:search) %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>

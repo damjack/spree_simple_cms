@@ -1,0 +1,21 @@
+<h1><%= t(:upload) %></h1>
+
+<table>
+	<tr data-hook="name">
+		<th><%= t(:name) %></th>
+		<td>
+			<%= @upload.name %>
+		</td>
+	</tr>
+	<tr data-hook="attachment">
+		<th><%= t(:attachment) %></th>
+		<td>
+			<%= image_tag(@upload.attachment.url(:thumbnail)) %>
+		</td>
+	</tr>
+</table>
+
+<p>
+	<%= link_to_edit @upload, :class => 'edit_upload' %> <%= t(:or) %>
+	<%= link_to t(:back), collection_url %>
+</p>

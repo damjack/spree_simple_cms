@@ -1,0 +1,8 @@
+<div data-hook="admin_upload_form_fields">
+	<%= f.inputs do %>
+		<%= f.input :attachment_name %>
+		<%= f.input :attachment_alt %>
+
+		<%= f.input :attachment, :as => :file, :label => I18n.t("simple_cms.image.one").capitalize, :hint => f.object.attachment.blank? ? f.template.content_tag(:span, t("simple_cms.no_image")) : f.template.image_tag(f.object.attachment.url(:thumbnail)) %>
+	<% end %>
+</div>
