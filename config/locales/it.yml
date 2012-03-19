@@ -3,6 +3,14 @@
 
 ---
 it:
+  ckeditor:
+    page_title: "File Manager CKEditor"
+    confirm_delete: "Cancellare il file?"
+    buttons:
+      cancel: "Cancella"
+      upload: "Carica"
+      delete: "Elimina"
+  
   activerecord:
     attributes:
       simple_cms:

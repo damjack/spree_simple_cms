@@ -16,7 +16,7 @@ class CreatePages < ActiveRecord::Migration
       
       t.datetime :published_at
       
-      t.references :spree_product
+      t.references :product
       
       t.timestamps
     end
