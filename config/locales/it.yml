@@ -1,5 +1,50 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
+---
 it:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      simple_cms:
+        published_at: Data Pubblicazione
+        active: Attivo?
+        slug: Link
+        attachment_width: Larghezza
+        attachment_height: Altezza
+        attachment: Immagine
+    models:
+      post:
+        one: Post
+        many: Posts
+      static_page:
+        one: Pagina
+        many: Pagine
+  
+  static_page: Pagina Statica
+  static_pages: Pagine Statiche
+  static_page:
+    one: Pagina
+    many: Pagine
+    name: Titolo
+    tag_title: Tag Titolo
+    meta_description: Meta Description
+    meta_keywords: Meta Keywords
+    content: Corpo della pagina
+    link: Link a URL esterno
+    no_image: Nessuna immagine caricata
+    image:
+      one: Immagine
+      many: Immagini
+    new_page: Nuova Pagina
+    editing_page: Modifica pagina
+    confirm_delete: Sei sicuro?
+  contact:
+    phone_number: Telefono
+    fax_number: Fax
+    email_address_store: Indirizzo Negozio
+    email_name: Nome
+    email_address: Indirizzo Email
+    email_object: Messaggio
+    email_sent_button: Invia
+    email_sent_message: Invia un messaggio
+    

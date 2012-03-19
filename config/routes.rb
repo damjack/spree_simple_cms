@@ -15,11 +15,11 @@ Spree::Core::Engine.routes.draw do
   resources :articles
   
   match '/contacts', :to => 'static_pages#contacts', :as => :contacts
-  match '/contacts/send', :to => "static_page#create_mail", :via => :post
-  match '/pages/*path', :to => 'static_pages#show', :as => :page
+  match '/contacts/send', :to => "static_pages#create_mail", :via => :post
+  match '/pages/*id', :to => 'static_pages#show', :as => :page
   match '/pages', :to => 'static_pages#index', :as => :pages
   
-  match '/post/*path', :to => 'posts#show', :as => :post
+  match '/post/*id', :to => 'posts#show', :as => :post
   match '/blog', :to => 'posts#index', :as => :posts
 
 end
