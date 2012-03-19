@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/quadratum/!svn/ver/26/ecommerce/spree_extensions/spree_qcommerce_style/app/views/spree/admin/store_settings
+END
+edit.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/quadratum/!svn/ver/26/ecommerce/spree_extensions/spree_qcommerce_style/app/views/spree/admin/store_settings/edit.html.erb
+END
+show.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/quadratum/!svn/ver/26/ecommerce/spree_extensions/spree_qcommerce_style/app/views/spree/admin/store_settings/show.html.erb
+END

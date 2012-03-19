@@ -1,0 +1,29 @@
+<%= form_tag 'contacts/send', :method=> :post, :id=> 'cform' do -%>
+  <fieldset>
+    <span class="name">
+      <%= text_field_tag :name, nil, {
+              :value => params[:name],
+              :placeholder => "il tuo nome",
+              :id=> 'name',
+              :class=>"text",
+              'data-validate'=>'validate(required) on(keyup focus)'}%>
+    </span>
+    <span class="email">
+      <%= text_field_tag :email, nil, {
+              :value => params[:email],
+              :placeholder => "la tua email",
+              :id=> 'email',
+              :class=>"text",
+              'data-validate'=>'validate(required, email) on(keydown focus)'}%>
+    </span>
+    <br class="clearer"/>
+    <%= text_area_tag :messaggio, nil, {
+            :value => params[:messaggio],
+            :placeholder => "il tuo messaggio",
+            :id=> 'messaggio',
+            :rows => 6,
+            :cols => 6,
+            :class=>""}%>
+  </fieldset>
+  <%=submit_tag "invia messaggio", :class=>"button submit"%>
+<%end%>

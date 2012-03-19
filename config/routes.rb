@@ -1,6 +1,7 @@
 Spree::Core::Engine.routes.draw do
   
   namespace :admin do
+    resource :store_settings
     resources :blogs do
       resources :posts
     end
@@ -14,6 +15,7 @@ Spree::Core::Engine.routes.draw do
   resources :articles
   
   match '/contacts', :to => 'static_pages#contacts', :as => :contacts
+  match '/contacts/send', :to => "static_page#create_mail", :via => :post
   match '/pages/*path', :to => 'static_pages#show', :as => :page
   match '/pages', :to => 'static_pages#index', :as => :pages
   
