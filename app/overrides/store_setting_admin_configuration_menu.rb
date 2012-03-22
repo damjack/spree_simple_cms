@@ -1,5 +1,11 @@
+Deface::Override.new(:virtual_path => "spree/admin/shared/_configuration_menu",
+                     :name => "add_store_setting_link_configuration_menu",
+                     :insert_bottom => "[data-hook='admin_configurations_sidebar_menu']",
+                     :text => %q{<%= configurations_sidebar_menu_item t("simple_cms.store_settings"), admin_store_settings_url %>},
+                     :disabled => false)
+
 Deface::Override.new(:virtual_path => "spree/admin/configurations/index",
-                     :name => "add_store_setting_configuration_line",
-                     :insert_bottom => "[data-hook='admin_configurations_menu']",
-                     :text => "<%= configurations_menu_item(t('store_settings'), admin_store_settings_url, t('manage_store_settings')) %>",
+                     :name => "add_store_setting_to_configuration_menu",
+                     :insert_after => "[data-hook='admin_configurations_menu']",
+                     :partial => "spree/admin/shared/store_setting_configurations_menu",
                      :disabled => false)

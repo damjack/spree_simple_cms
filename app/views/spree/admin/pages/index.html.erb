@@ -1,18 +1,18 @@
 <div class="toolbar" data-hook="toolbar">
   <ul class="actions">
     <li>
-      <p><%= button_link_to t(:new_page), new_object_url, :icon => 'add', :id => 'admin_new_page_link' %></p>
+      <p><%= button_link_to t("simple_cms.page.new_page"), new_object_url, :icon => 'add', :id => 'admin_new_page_link' %></p>
     </li>
   </ul>
   <br class="clear" />
 </div>
 
-<h1><%= t(:listing_pages) %></h1>
+<h1><%= t("simple_cms.page.listing_pages") %></h1>
 
 <table class="index" id="listing_pages" data-hook>
   <thead>
     <tr data-hook="admin_pages_index_headers">
-      <th><%= sort_link @search,:name, t(:page), {}, {:title => 'page_name_title'} %></th>
+      <th><%= sort_link @search,:name, t(:page), {}, {:title => t("simple_cms.page.name")} %></th>
 	  <th><%= t(:published_at) %></th>
       <th data-hook="admin_users_index_header_actions"></th>
     </tr>
@@ -40,11 +40,11 @@
     <% @search = Spree::Page.search %>
     <%= form_for [:admin, @search] do |f| %>
       <p>
-        <%= t(:name) %><br />
+        <%= t("simple_cms.page.name") %><br />
         <%= f.text_field :name_contains, :size =>18 %>
       </p>
       <div data-hook="admin_pages_index_search_buttons">
-        <p><%= button t(:search) %></p>
+        <p><%= button t("simple_cms.page.search") %></p>
       </div>
     <% end %>
   </div>

@@ -1,20 +1,20 @@
-<h1><%= t(:page) %></h1>
+<h1><%= t("simple_cms.page.show_page") %></h1>
 
 <table>
 	<tr data-hook="name">
-		<th><%= t(:name) %></th>
+		<th><%= t("simple_cms.page.name") %></th>
 		<td>
 			<%= @page.name %>
 		</td>
 	</tr>
 	<tr data-hook="description">
-		<th><%= t(:description) %></th>
+		<th><%= t("simple_cms.page.content") %></th>
 		<td>
-			<%= @page.description %>
+			<%= raw @page.content %>
 		</td>
 	</tr>
 	<tr data-hook="image">
-		<th><%= t(:image) %></th>
+		<th><%= t("simple_cms.page.image.one") %></th>
 		<td>
 			<%= image_tag(@page.image.url(:thumbnail)) %>
 		</td>
