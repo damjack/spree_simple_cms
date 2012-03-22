@@ -71,28 +71,28 @@ en:
   static_page: Pagina Statica
   static_pages: Pagine Statiche
   simple_cms:
-      page:
-        one: Page
-        many: Pages
-        name: Title
-        search: Search
-        tag_title: Tag Title
-        meta_description: Meta Description
-        meta_keywords: Meta Keywords
-        content: Page Content
-        published_at: Published At
-        image_width: Width Image
-        image_height: Height Image
-        link: Link
-        no_image: No Image Found
-        image:
-          one: Image
-          many: Images
-        information: Information
-        new_page: New Page
-        editing_page: Edit Page
-        show_page: View Page
-        confirm_delete: Are you sure?
+    page:
+      one: Page
+      many: Pages
+      name: Title
+      search: Search
+      tag_title: Tag Title
+      meta_description: Meta Description
+      meta_keywords: Meta Keywords
+      content: Page Content
+      published_at: Published At
+      image_width: Width Image
+      image_height: Height Image
+      link: Link
+      no_image: No Image Found
+      image:
+        one: Image
+        many: Images
+      information: Information
+      new_page: New Page
+      editing_page: Edit Page
+      show_page: View Page
+      confirm_delete: Are you sure?
     store_settings: Setting Store
     manage_store_settings: Manage Setting Store
     edit_store_settings: Edit Setting Store
@@ -105,4 +105,4 @@ en:
       email_object: Message
       email_sent_button: Send
       email_sent_message: Send a message
-    
+  

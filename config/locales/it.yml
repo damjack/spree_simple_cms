@@ -93,16 +93,16 @@ it:
       editing_page: Modifica pagina
       show_page: Visualizza pagine
       confirm_delete: Sei sicuro?
-  store_settings: Impostazioni Store
-  manage_store_settings: Gestione Impostazioni Store
-  edit_store_settings: Modifica Impostazioni Store
-  contact:
-    phone_number: Telefono
-    fax_number: Fax
-    email_address_store: Indirizzo Negozio
-    email_name: Nome
-    email_address: Indirizzo Email
-    email_object: Messaggio
-    email_sent_button: Invia
-    email_sent_message: Invia un messaggio
-    
+    store_settings: Impostazioni Store
+    manage_store_settings: Gestione Impostazioni Store
+    edit_store_settings: Modifica Impostazioni Store
+    contact:
+      phone_number: Telefono
+      fax_number: Fax
+      email_address_store: Indirizzo Negozio
+      email_name: Nome
+      email_address: Indirizzo Email
+      email_object: Messaggio
+      email_sent_button: Invia
+      email_sent_message: Invia un messaggio
+  

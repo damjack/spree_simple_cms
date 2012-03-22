@@ -1,36 +1,36 @@
 <div id="contacts" class="s_info_page grid_9">
 
-	<h2><%= two_color_title(t("contact.email_address_store")) %></h2>
+	<h2><%= two_color_title(t("simple_cms.contact.email_address_store")) %></h2>
 
 	<p class="alpha grid_4"><strong><%= Spree::Config[:store_name] %></strong><br> <%= Spree::Config[:store_address] %></p>
-	<p class="grid_4"><strong><%= t("contact.phone_number") %>:</strong><br> <%= Spree::Config[:store_phone_number] %></p>
-	<p class="omega grid_4"><strong><%= t("contact.fax_number") %>:</strong><br> <%= Spree::Config[:store_fax_number] %></p>
+	<p class="grid_4"><strong><%= t("simple_cms.contact.phone_number") %>:</strong><br> <%= Spree::Config[:store_phone_number] %></p>
+	<p class="omega grid_4"><strong><%= t("simple_cms.contact.fax_number") %>:</strong><br> <%= Spree::Config[:store_fax_number] %></p>
 
 	<br>
 	<span class="clear border_ddd"></span>
 	<br>
 
-	<h2><%= two_color_title t("contact.email_sent_message") %></h2>
+	<h2><%= two_color_title t("simple_cms.contact.email_sent_message") %></h2>
 
 	<%= form_tag 'contacts/send', :method=> :post, :id=> 'contact_form' do %>
 	<div id="contact_form_icon"></div>
 
 	<div class="s_row_3 clearfix">
-		<label><strong><%= t("contact.email_name") %>:</strong> *</label>
+		<label><strong><%= t("simple_cms.contact.email_name") %>:</strong> *</label>
 		<%= text_field_tag :name, nil, {
 			:value => params[:name],
 			:placeholder => "il tuo nome",
 			:class=>"required" } %>
 	</div>
 	<div class="s_row_3 clearfix">
-		<label><strong><%= t("contact.email_address") %>:</strong> *</label>
+		<label><strong><%= t("simple_cms.contact.email_address") %>:</strong> *</label>
 		<%= text_field_tag :email, nil, {
 			:value => params[:email],
 			:placeholder => "la tua email",
 			:class=>"required email" }%>
 	</div>
 	<div class="s_row_3 clearfix">
-		<label><strong><%= t("contact.email_object")%>:</strong> *</label>
+		<label><strong><%= t("simple_cms.contact.email_object")%>:</strong> *</label>
 		<div class="s_full">
 			<%= text_area_tag :messaggio, nil, {
 				:value => params[:messaggio],
@@ -41,6 +41,6 @@
 				:class=>"required"}%>
 		</div>
 	</div>
-	<%= link_to(content_tag(:span, t("contact.email_sent_button"), :class => "s_text"), "javascript: $('#contact_form').submit();", :class => "s_button_1 s_main_color_bgr") %>
+	<%= link_to(content_tag(:span, t("simple_cms.contact.email_sent_button"), :class => "s_text"), "javascript: $('#contact_form').submit();", :class => "s_button_1 s_main_color_bgr") %>
 	<% end %>
 </div>
