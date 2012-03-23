@@ -1,6 +1,7 @@
 <div data-hook="admin_page_form_fields">
 	<%= f.inputs do %>
 		<%= f.input :name, :label => t("simple_cms.page.name") %>
+		<%= f.input :position, :label => t("simple_cms.page.position") %>
 		<%= f.input :tag_title, :label => t("simple_cms.page.tag_title") %>
 		<%= f.input :meta_description, :label => t("simple_cms.page.meta_description") %>
 		<%= f.input :meta_keywords, :label => t("simple_cms.page.meta_keywords") %>
@@ -9,7 +10,7 @@
 		
 		<%= f.input :image_width, :label => t("simple_cms.page.image_width") %>
 		<%= f.input :image_height, :label => t("simple_cms.page.image_height") %>
-
+		
 		<%= f.input :image, :as => :file, :label => t("simple_cms.page.image.one").capitalize, :hint => f.object.image.blank? ? f.template.content_tag(:span, t("simple_cms.page.no_image")) : f.template.image_tag(f.object.image.url(:thumbnail)) %>
 	<% end %>
 </div>

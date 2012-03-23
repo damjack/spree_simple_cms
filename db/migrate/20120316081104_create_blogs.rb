@@ -14,6 +14,8 @@ class CreateBlogs < ActiveRecord::Migration
       t.datetime :image_update_at
       t.integer :image_width, :image_height
       
+      t.integer :position
+      
       t.date :from
       t.date :to
       

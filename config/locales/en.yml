@@ -84,6 +84,7 @@ en:
       image_width: Width Image
       image_height: Height Image
       link: Link
+      position: Position
       no_image: No Image Found
       image:
         one: Image

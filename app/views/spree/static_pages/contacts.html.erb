@@ -2,9 +2,9 @@
 
 	<h2><%= two_color_title(t("simple_cms.contact.email_address_store")) %></h2>
 
-	<p class="alpha grid_4"><strong><%= Spree::Config[:store_name] %></strong><br> <%= Spree::Config[:store_address] %></p>
-	<p class="grid_4"><strong><%= t("simple_cms.contact.phone_number") %>:</strong><br> <%= Spree::Config[:store_phone_number] %></p>
-	<p class="omega grid_4"><strong><%= t("simple_cms.contact.fax_number") %>:</strong><br> <%= Spree::Config[:store_fax_number] %></p>
+	<p class="alpha grid_3"><strong><%= Spree::Config[:store_name] %></strong><br> <%= Spree::Config[:store_address] %></p>
+	<p class="grid_3"><strong><%= t("simple_cms.contact.phone_number") %>:</strong><br> <%= Spree::Config[:store_phone_number] %></p>
+	<p class="omega grid_3"><strong><%= t("simple_cms.contact.fax_number") %>:</strong><br> <%= Spree::Config[:store_fax_number] %></p>
 
 	<br>
 	<span class="clear border_ddd"></span>
@@ -44,3 +44,5 @@
 	<%= link_to(content_tag(:span, t("simple_cms.contact.email_sent_button"), :class => "s_text"), "javascript: $('#contact_form').submit();", :class => "s_button_1 s_main_color_bgr") %>
 	<% end %>
 </div>
+
+<%= render :partial => 'spree/shared/sidebar_pages' %>

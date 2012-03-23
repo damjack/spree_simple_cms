@@ -84,6 +84,7 @@ it:
       image_width: Larghezza Immagine
       image_height: Altezza Immagine
       link: Link a URL esterno
+      position: Posizione
       no_image: Nessuna immagine caricata
       image:
         one: Immagine
