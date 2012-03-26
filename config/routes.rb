@@ -3,11 +3,19 @@ Spree::Core::Engine.routes.draw do
   namespace :admin do
     resource :store_settings
     resources :blogs do
-      resources :posts
+      resources :posts do
+        collection do
+          post :update_positions
+        end
+      end
     end
     resources :pages do
       resources :articles
-      resources :static_pages
+      resources :static_pages do
+        collection do
+          post :update_positions
+        end
+      end
     end
     resources :uploads
   end

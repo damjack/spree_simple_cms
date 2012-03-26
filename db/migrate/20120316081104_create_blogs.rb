@@ -3,7 +3,7 @@ class CreateBlogs < ActiveRecord::Migration
     create_table :spree_blogs do |t|
       
       t.string :name, :slug, :tag_title, :meta_description, :meta_keywords
-      t.text :description, :limit => 500
+      t.text :description
       t.text :content
       t.string :link
       
