@@ -10,6 +10,9 @@ Spree::Core::Engine.routes.draw do
       end
     end
     resources :pages do
+      collection do
+        post :update_positions
+      end
       resources :articles
       resources :static_pages do
         collection do
