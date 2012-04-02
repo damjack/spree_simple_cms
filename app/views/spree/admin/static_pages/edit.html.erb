@@ -1,10 +1,10 @@
 <div data-hook="admin_page_edit_form_header">
-  <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @page } %>
+  <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @static_page } %>
   <h1><%= t("simple_cms.page.edit_page") %></h1>
 </div>
 
 <div data-hook="admin_page_edit_form">
-  <%= semantic_form_for([:admin, @page], :html => { :enctype => "multipart/form-data" }) do |f| %>
+  <%= semantic_form_for([:admin, @static_page], :html => { :enctype => "multipart/form-data" }) do |f| %>
     <%= render :partial => 'form', :locals => { :f => f } %>
 
     <div data-hook="admin_page_edit_form_buttons">

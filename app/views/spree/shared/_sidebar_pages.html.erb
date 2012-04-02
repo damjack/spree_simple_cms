@@ -3,13 +3,7 @@
 	<div id="information_module" class="s_box">
 		<h2><%= t("simple_cms.page.information") %></h2>
 		<!-- TODO da inserire un helper per la stampa di tutte le pagine pubblicate in ordine di posizione -->
-		<ul class="s_list_1">
-			<li><%= link_to t(:who_we_are), page_path("chi-siamo") %></li>
-			<li><%= link_to t(:privacy), page_path("privacy") %></li>
-			<li><%= link_to t(:terms), page_path("terms") %></li>
-			<li><%= link_to t(:contacts), contacts_path() %></li>
-			<li><%= link_to t(:maps), page_path("maps") %></li>
-		</ul>
+		<%= pages_list_link(:class => "s_list_1") %>
 	</div>
 
 	<div id="bestseller_side" class="s_box clearfix">

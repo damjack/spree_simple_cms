@@ -6,7 +6,7 @@ module Spree
     end
     
     def show
-      @static_page = Spree::Page.find(params[:id])
+      @static_page = Spree::StaticPage.find(params[:id])
     end
     
     def create_mail

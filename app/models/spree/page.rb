@@ -14,7 +14,7 @@ module Spree
 
     has_many :uploads, :as => :uploadable
     accepts_nested_attributes_for :uploads, :allow_destroy => true
-
+    
     def should_generate_new_friendly_id?
       new_record?
     end

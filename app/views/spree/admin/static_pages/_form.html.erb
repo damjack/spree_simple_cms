@@ -1,11 +1,11 @@
 <div data-hook="admin_page_form_fields">
 	<%= f.inputs do %>
 		<%= f.input :name, :label => t("simple_cms.page.name") %>
-		<%= f.input :position, :label => t("simple_cms.page.position") %>
+		<%= f.input :slug, :label => t("simple_cms.page.slug") %>
 		<%= f.input :tag_title, :label => t("simple_cms.page.tag_title") %>
 		<%= f.input :meta_description, :label => t("simple_cms.page.meta_description") %>
 		<%= f.input :meta_keywords, :label => t("simple_cms.page.meta_keywords") %>
-		<%= f.cktext_area :content, :input_html => { :value => @page.content }, :label => t("simple_cms.page.content") %>
+		<%= f.cktext_area :content, :input_html => { :value => @static_page.content }, :label => t("simple_cms.page.content") %>
 		<%= f.input :published_at, :as => :string, :input_html => { :class => 'datepicker'}, :label => t("simple_cms.page.published_at") %>
 		
 		<%= f.input :image_width, :label => t("simple_cms.page.image_width") %>

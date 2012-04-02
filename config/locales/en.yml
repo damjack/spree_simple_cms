@@ -68,9 +68,20 @@ en:
         one: Page
         many: Pages
   
+  time:
+    formats:
+      default: "%a %d %b %Y, %H:%M:%S %z"
+      short: "%d/%m/%Y"
+      long: "%d/%m/%Y  %H:%M"
+      hours: "%H:%M"
+      dow: "%A"
+  
   static_page: Pagina Statica
   static_pages: Pagine Statiche
   simple_cms:
+    pages: Pages
+    listing_pages: List Pages
+    page: Page
     page:
       one: Page
       many: Pages

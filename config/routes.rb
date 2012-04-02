@@ -9,15 +9,14 @@ Spree::Core::Engine.routes.draw do
         end
       end
     end
-    resources :pages do
+    resources :articles
+    resources :static_pages do
       collection do
         post :update_positions
       end
-      resources :articles
-      resources :static_pages do
-        collection do
-          post :update_positions
-        end
+      member do
+        get :published
+        get :in_nav_menu
       end
     end
     resources :uploads
