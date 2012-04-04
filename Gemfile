@@ -6,6 +6,8 @@ gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '1-0-stable'
 gem 'ckeditor', '3.7.0.rc3'
 gem 'paperclip', '>= 2.5.0'
 gem 'friendly_id', '~> 4.0.1'
+gem 'acts-as-taggable-on', '~> 2.2.2'
+gem 'acts_as_commentable_with_threading'
 gem 'formtastic'
 
 group :test do

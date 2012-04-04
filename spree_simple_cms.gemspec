@@ -22,6 +22,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'friendly_id', '~> 4.0.1'
   s.add_dependency 'ckeditor', '3.7.0.rc3'
   s.add_dependency 'paperclip', '>= 2.5.0'
+  s.add_dependency 'acts-as-taggable-on', '~> 2.2.2'
+  s.add_dependency 'acts_as_commentable_with_threading'
   
   s.add_development_dependency 'rspec-rails'
 end

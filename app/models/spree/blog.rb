@@ -1,5 +1,9 @@
 module Spree
   class Blog < ActiveRecord::Base
+    # TAGGING AND COMMENT SYSTEM
+    acts_as_taggable
+    acts_as_taggable_on :tags
+    
     validates_presence_of :name, :content
     validate :no_image_errors
     
