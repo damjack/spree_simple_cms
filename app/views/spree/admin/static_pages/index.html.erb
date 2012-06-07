@@ -24,7 +24,7 @@
 		<tr id="<%= dom_id sp %>" data-hook="admin_static_pages_index_rows">
 			<td width="270px" class='page_name'>
 				<span class="handle"></span>
-				<%=link_to sp.name, object_url(sp) %>
+				<%= sp.name %>
 			</td>
 			<td class="static_page_position"><%= sp.position %></td>
 			<td class="static_page_position"><%= sp.in_nav_menu %></td>
@@ -47,18 +47,3 @@
 <%= paginate @static_pages %>
 
 
-<% content_for :sidebar do %>
-<div class="box" data-hook="admin_pages_index_search">
-	<h3><%= t(:search) %></h3>
-	<% @search = Spree::StaticPage.search %>
-	<%= form_for [:admin, @search] do |f| %>
-	<p>
-		<%= t("simple_cms.page.name") %><br />
-		<%= f.text_field :name_contains, :size =>18 %>
-	</p>
-	<div data-hook="admin_static_pages_index_search_buttons">
-		<p><%= button t("simple_cms.page.search") %></p>
-	</div>
-	<% end %>
-</div>
-<% end %>

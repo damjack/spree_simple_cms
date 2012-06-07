@@ -1,3 +1,7 @@
-<div class="grid_12" data-hook="blog_show_content">
-  <% # TODO aggiungere la vista di tutti gli elementi del post %>
+<div class="grid_12" data-hook="blog_show_content" id="post-content-div">
+    <h2> <%= @post.name %> </h2>
+  <div class="post-date"> <%= t(:write_in) %>: <%= post_date @post %> </div>
+   <div class="post-tags"> Tags: <%= @post.tags.join(',').upcase %> </div>
+   <div class="post-content"> <%= raw @post.content %> </div>
+  <div  class="post-back"> <%= link_to t(:back), posts_path %> </div>
 </div>

@@ -117,4 +117,5 @@ en:
       email_object: Message
       email_sent_button: Send
       email_sent_message: Send a message
+    insert_tag_instruction: "Enter tags separated by commas"
   

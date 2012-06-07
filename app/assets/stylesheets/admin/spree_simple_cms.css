@@ -15,3 +15,7 @@
 .formtastic button:hover {
 	text-shadow: #FFFFFF -1px -1px 0px;
 }
+
+.tags {
+    margin-right: 5px;
+}

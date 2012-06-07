@@ -13,5 +13,5 @@ Spree::AppConfiguration.class_eval do
   preference :store_description, :text, :default => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, sem id vulputate auctor, dui lectus lacinia ipsum, placerat euismod felis tellus a nulla. Nunc fermentum tincidunt dui, ac iaculis quam elementum et. Mauris sit amet vehicula tortor. Maecenas euismod fringilla venenatis. In accumsan ultricies odio at venenatis. Duis aliquam euismod libero, nec eleifend massa fermentum iaculis. Donec imperdiet egestas ligula pretium aliquam.'
   preference :store_welcome_title, :string, :default => 'Testo di benvenuto'
   preference :store_welcome_description, :text, :default => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, sem id vulputate auctor, dui lectus lacinia ipsum, placerat euismod felis tellus a nulla. Nunc fermentum tincidunt dui, ac iaculis quam elementum et. Mauris sit amet vehicula tortor. Maecenas euismod fringilla venenatis. In accumsan ultricies odio at venenatis. Duis aliquam euismod libero, nec eleifend massa fermentum iaculis. Donec imperdiet egestas ligula pretium aliquam.'
-  
+  preference :post_per_page,:integer, :default => 5
 end

@@ -116,4 +116,16 @@ it:
       email_object: Messaggio
       email_sent_button: Invia
       email_sent_message: Invia un messaggio
+  insert_tag_instruction: "Inserisci i tag separati dalla virgola"
+  posts: "News"
+  write_in: "Scritto il"
+  content: "Contenuto"
+  published_at: "Pubblicato il"
+  name: "Nome"
+  active: "Attivo"
+  new_post: "Nuova news"
+  listing_posts: "Lista news"
+  post: "News"
+  name: "Nome"
+  tag_list: "Lista dei tag"
   

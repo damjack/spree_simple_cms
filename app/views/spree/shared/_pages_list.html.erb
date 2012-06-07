@@ -1,0 +1,8 @@
+<% pages.each do |page| %>
+    <div class="page-preview">
+      <h2> <%= page.name %></h2>
+      <div class="page-date"> <%= t(:write_in) %>: <%= post_date page %> </div>
+      <div class="page-prev"> <%= preview_content page %> </div>
+      <div class="page-link"> <%= link_to t(:show), page_path(page) %> </div>
+    </div>
+<% end %>

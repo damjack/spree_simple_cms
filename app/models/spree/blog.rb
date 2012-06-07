@@ -21,7 +21,11 @@ module Spree
     accepts_nested_attributes_for :uploads, :allow_destroy => true
 
     before_save :set_published_at, :if => Proc.new {|model| model.published_at.nil? }
-    
+
+    def set_published_at
+      self.published_at = Time.now
+    end
+
     #TODO: spostare in libreria
     def no_image_errors
       unless image.errors.empty?

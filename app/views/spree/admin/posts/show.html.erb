@@ -1,0 +1,33 @@
+<h1><%= t(:post) %></h1>
+
+<table>
+	<tr data-hook="name">
+		<th><%= t(:name) %></th>
+		<td>
+			<%= @post.name %>
+		</td>
+	</tr>
+	<tr data-hook="description">
+		<th><%= t(:content) %></th>
+		<td>
+			<%= @post.content %>
+		</td>
+	</tr>
+	<tr data-hook="image">
+		<th><%= t(:published_at) %></th>
+		<td>
+			<%= @post.published_at %>
+		</td>
+	</tr>
+    <tr data-hook="image">
+		<th><%= t(:active) %></th>
+		<td>
+			<%= @post.active %>
+		</td>
+	</tr>
+</table>
+
+<p>
+	<%= link_to_edit @post, :class => 'edit_post' %> <%= t(:or) %>
+	<%= link_to t(:back), collection_url %>
+</p>

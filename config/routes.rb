@@ -2,12 +2,15 @@ Spree::Core::Engine.routes.draw do
   
   namespace :admin do
     resource :store_settings
+
+    resources :posts
+
     resources :blogs do
-      resources :posts do
-        collection do
-          post :update_positions
-        end
-      end
+      #resources :posts do
+      #  collection do
+      #    post :update_positions
+      #  end
+      #end
     end
     resources :articles
     resources :static_pages do
@@ -29,7 +32,9 @@ Spree::Core::Engine.routes.draw do
   match '/pages/*id', :to => 'static_pages#show', :as => :page
   match '/pages', :to => 'static_pages#index', :as => :pages
   
-  match '/post/*id', :to => 'posts#show', :as => :post
-  match '/blog', :to => 'posts#index', :as => :posts
+  #match '/post/*id', :to => 'posts#show', :as => :post
+  #match '/blog', :to => 'posts#index', :as => :posts
+  match '/news', :to => 'posts#index', :as => :posts
+  match '/news/*id', :to => 'posts#show', :as => :post
 
 end

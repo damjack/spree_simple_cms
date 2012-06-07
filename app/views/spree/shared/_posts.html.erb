@@ -1,0 +1,14 @@
+<% posts.all.each do |post| %>
+    <div class="post-preview">
+      <h2> <%= post.name %></h2>
+      <div class="post-date"> <%= t(:write_in) %>: <%= post_date post %> </div>
+      <div class="post-tags">
+        Tags:
+        <% post.tags.each do |tag| %>
+            <%= tag_link tag %>
+        <% end %>
+        </div>
+      <div class="post-prev"> <%= preview_content post %> </div>
+      <div class="post-link"> <%= link_to t(:show), post_path(post) %> </div>
+    </div>
+<% end %>
