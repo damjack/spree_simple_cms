@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'sqlite3'
 
-gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '1-0-stable'
+#gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '1-0-stable'
 gem 'ckeditor', '3.7.0.rc3'
 gem 'paperclip', '>= 2.5.0'
 gem 'friendly_id', '~> 4.0.1'
