@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_simple_cms'
-  s.version     = '1.1.0'
+  s.version     = '1.0.0'
   s.summary     = 'Extension to create a simple CMS and Blog for you Spree Shop'
   s.required_ruby_version = '>= 1.8.7'
 
