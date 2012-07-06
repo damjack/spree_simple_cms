@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_simple_cms'
-  s.version     = '1.0.0'
+  s.version     = '1.1.0'
   s.summary     = 'Extension to create a simple CMS and Blog for you Spree Shop'
   s.required_ruby_version = '>= 1.8.7'
 
@@ -19,10 +19,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'spree_core'
   s.add_dependency 'spree_auth'
   s.add_dependency 'formtastic'
-  s.add_dependency 'friendly_id', '~> 4.0.1'
-  s.add_dependency 'ckeditor', '3.7.1'
-  s.add_dependency 'paperclip', '>= 2.5.0'
-  s.add_dependency 'acts-as-taggable-on', '~> 2.3.1'
+  s.add_dependency 'friendly_id'
+  s.add_dependency 'ckeditor'
+  s.add_dependency 'paperclip'
+  s.add_dependency 'acts-as-taggable-on'
   s.add_dependency 'acts_as_commentable_with_threading'
   
   s.add_development_dependency 'rspec-rails'
