@@ -40,7 +40,7 @@ module Spree
       end
 
       def collection
-        @search = super.ransack(params[:search])
+        @search = super.metasearch(params[:search])
       end
 
       def new
