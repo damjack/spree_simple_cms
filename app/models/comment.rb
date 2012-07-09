@@ -1,7 +1,9 @@
 module Spree
   class Comment < ActiveRecord::Base
     acts_as_nested_set :scope => [:commentable_id, :commentable_type]
-
+    
+    attr_accessible :title, :body, :subject, :user_id, :parent_id, :commentable_id, :commentable_type
+    
     validates_presence_of :body
     validates_presence_of :user
 

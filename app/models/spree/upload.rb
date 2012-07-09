@@ -1,7 +1,9 @@
 module Spree
   class Upload < ActiveRecord::Base
     belongs_to :uploadable, :polymorphic => true
-
+    
+    attr_accessible :attachment, :attachment_name, :attachment_alt, :attachment_width, :attachment_height, :position, :uploadable, :uploadable_id, :uploadable_type
+    
     validate :no_image_errors
     has_attached_file :attachment, :styles => {
           :thumbnail => "100x100#",

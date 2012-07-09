@@ -4,6 +4,9 @@ module Spree
     acts_as_taggable
     acts_as_taggable_on :tags
     
+    attr_accessible :name, :content, :image, :tag_title, :meta_description, :meta_keywords, :description,
+                    :link, :slug, :position, :from, :to, :active, :published_at, :image_width, :image_height
+    
     validates_presence_of :name, :content
     validate :no_image_errors
     

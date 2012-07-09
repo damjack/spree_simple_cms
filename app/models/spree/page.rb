@@ -1,5 +1,8 @@
 module Spree
   class Page < ActiveRecord::Base
+    attr_accessible :name, :content, :image, :tag_title, :meta_description, :meta_keywords, :description,
+                    :link, :slug, :position, :in_nav_menu, :published_at, :image_width, :image_height
+    
     validate :no_image_errors
     
     extend ::FriendlyId
