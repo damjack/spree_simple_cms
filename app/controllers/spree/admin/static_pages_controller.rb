@@ -2,9 +2,14 @@ module Spree
   module Admin
     class StaticPagesController < ResourceController
       def index
-        params[:search] ||= {}
-        params[:search][:meta_sort] ||= "name.asc"
-        @static_pages = @search.result.page(params[:name]).per(Spree::Config[:admin_products_per_page])
+        respond_with(@collection) do |format|
+          format.html
+          format.json { render :json => json_data }
+        end
+      end
+      
+      def show
+        redirect_to( :action => :edit )
       end
 
       def published
@@ -40,67 +45,23 @@ module Spree
       end
 
       def collection
-        @search = super.metasearch(params[:search])
-      end
+        return @collection if @collection.present?
 
-      def new
-        @static_page = @object
-      end
-
-      def edit
-        @static_page = @object
-      end
-
-=begin
-  TODO da togliere: sarebbe preferibile lasciare :
-       def location_after_save
-           admin_static_pages_url
-       end
-  e togliere:
-    - def update
-    - def create
-=end
-
-        def update
-          invoke_callbacks(:update, :before)
-          if @object.update_attributes(params[object_name])
-            invoke_callbacks(:update, :after)
-            flash.notice = flash_message_for(@object, :successfully_updated)
-            redirect_to location_after_save
-            #respond_with(@object) do |format|
-            #  format.html { redirect_to self.location_after_save }
-            #  format.js   { render :layout => false }
-            #end
-          else
-            invoke_callbacks(:update, :fails)
-            respond_with(@object)
-          end
+        unless request.xhr?
+          params[:search] ||= {}
+          params[:search][:meta_sort] ||= "name.asc"
+          @search = super.metasearch(params[:search])
+          @collection = @search.relation.page(params[:name]).per(Spree::Config[:admin_products_per_page])
+        else
+          @collection = super.where(["name #{LIKE} ?", "%#{params[:q]}%"])
+          @collection = @collection.limit(params[:limit] || 10)
         end
-
-        def create
-          invoke_callbacks(:create, :before)
-          if @object.save
-            invoke_callbacks(:create, :after)
-            flash.notice = flash_message_for(@object, :successfully_created)
-            redirect_to location_after_save
-            #respond_with(@object) do |format|
-            #  format.html { redirect_to location_after_save }
-            #  format.js   { render :layout => false }
-            #end
-          else
-            invoke_callbacks(:create, :fails)
-            respond_with(@object)
-          end
-        end
-
-
+      end
+      
       protected
-
-        def location_after_save
-           admin_static_pages_url
-        end
-
-
+      def location_after_save
+         admin_static_pages_url()
+      end
     end
   end
 end

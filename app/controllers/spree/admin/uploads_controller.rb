@@ -7,10 +7,6 @@ module Spree
         @uploads = @search.page(params[:attachment_name]).per(Spree::Config[:admin_products_per_page])
       end
       
-      def collection
-        @search = super.metasearch(params[:search])
-      end
-      
       def new
           @upload = @object
       end

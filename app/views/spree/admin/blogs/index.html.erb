@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @blogs.each do |blog|%>
+    <% @collection.each do |blog|%>
       <tr id="<%= dom_id blog %>" data-hook="admin_blogs_index_rows">
         <td width="270px" class='blog_name'><%=link_to blog.name, object_url(blog) %></td>
 		<td width="80px" class='blog_published_at'><%= l page.published_at %></td>
