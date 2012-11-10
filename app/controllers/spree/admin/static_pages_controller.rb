@@ -31,9 +31,8 @@ module Spree
 
       def update_positions
         params[:positions].each do |id, index|
-          Spree::StaticPage.update_all(['position=?', index], ['id=?', id])
+          Spree::StaticPage.where(:id => id).update_all(:position => index)
         end
-
         respond_to do |format|
           format.js { render :text => 'Ok' }
         end
@@ -51,56 +50,10 @@ module Spree
         @static_page = @object
       end
 
-=begin
-  TODO da togliere: sarebbe preferibile lasciare :
-       def location_after_save
-           admin_static_pages_url
-       end
-  e togliere:
-    - def update
-    - def create
-=end
-
-        def update
-          invoke_callbacks(:update, :before)
-          if @object.update_attributes(params[object_name])
-            invoke_callbacks(:update, :after)
-            flash.notice = flash_message_for(@object, :successfully_updated)
-            redirect_to location_after_save
-            #respond_with(@object) do |format|
-            #  format.html { redirect_to self.location_after_save }
-            #  format.js   { render :layout => false }
-            #end
-          else
-            invoke_callbacks(:update, :fails)
-            respond_with(@object)
-          end
-        end
-
-        def create
-          invoke_callbacks(:create, :before)
-          if @object.save
-            invoke_callbacks(:create, :after)
-            flash.notice = flash_message_for(@object, :successfully_created)
-            redirect_to location_after_save
-            #respond_with(@object) do |format|
-            #  format.html { redirect_to location_after_save }
-            #  format.js   { render :layout => false }
-            #end
-          else
-            invoke_callbacks(:create, :fails)
-            respond_with(@object)
-          end
-        end
-
-
       protected
-
-        def location_after_save
-           admin_static_pages_url
-        end
-
-
+      def location_after_save
+        admin_static_pages_url
+      end
     end
   end
 end

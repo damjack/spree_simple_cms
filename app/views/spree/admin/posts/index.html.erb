@@ -1,13 +1,19 @@
-<div class="toolbar" data-hook="toolbar">
-  <ul class="actions">
-    <li>
-      <p><%= button_link_to t(:new_post), new_object_url, :icon => 'add', :id => 'admin_new_post_link' %></p>
-    </li>
-  </ul>
-  <br class="clear" />
-</div>
+<% content_for :page_title do %>
+  <%= t("simple_cms.page.listing_posts") %>
+<% end %>
 
-<h1><%= t(:listing_posts) %></h1>
+<% content_for :page_actions do %>
+	<div class="toolbar" data-hook="toolbar">
+	  <ul class="actions">
+	    <li>
+	      <%= button_link_to t(:new_post), new_object_url, { :remote => true, :icon => 'icon-plus', :id => 'admin_new_post_link' } %>
+	    </li>
+	  </ul>
+	  <br class="clear" />
+	</div>
+<% end %>
+
+<div id="new_post" data-hook></div>
 
 <table class="index" id="listing_blogs" data-hook>
   <thead>

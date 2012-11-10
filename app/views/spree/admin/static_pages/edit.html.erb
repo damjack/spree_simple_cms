@@ -1,14 +1,14 @@
-<div data-hook="admin_page_edit_form_header">
-  <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @static_page } %>
-  <h1><%= t("simple_cms.page.edit_page") %></h1>
-</div>
+<% content_for :page_actions do %>
+  <li><%= button_link_to t("simple_cms.page.back_to_page_list"), admin_static_pages_url, :icon => 'icon-arrow-left' %></li>
+<% end %>
 
-<div data-hook="admin_page_edit_form">
-  <%= semantic_form_for([:admin, @static_page], :html => { :enctype => "multipart/form-data" }) do |f| %>
-    <%= render :partial => 'form', :locals => { :f => f } %>
+<%= render :partial => 'spree/admin/shared/page_tabs', :locals => { :current => 'Page Details' } %>
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @static_page } %>
 
-    <div data-hook="admin_page_edit_form_buttons">
-      <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
-    </div>
+<%= form_for([:admin, @static_page], :method => :put, :html => { :multipart => true }) do |f| %>
+	<fieldset class="no-border-top">
+    	<%= render :partial => 'form', :locals => { :f => f } %>
+		<%= render :partial => 'spree/admin/shared/edit_resource_links' %>
+	</fieldset>
   <% end %>
 </div>

@@ -4,7 +4,7 @@
 </div>
 
 <div data-hook="admin_page_new_form">
-  <%= semantic_form_for([:admin, @static_page], :html => { :enctype => "multipart/form-data" }) do |f| %>
+  <%= form_for([:admin, @static_page], :html => { :multipart => true }) do |f| %>
     <%= render :partial => 'form', :locals => { :f => f } %>
 
     <div data-hook="admin_page_new_form_buttons">

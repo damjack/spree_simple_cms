@@ -2,18 +2,7 @@
 
 	<div id="information_module" class="s_box">
 		<h2><%= t("simple_cms.page.information") %></h2>
-		<!-- TODO da inserire un helper per la stampa di tutte le pagine pubblicate in ordine di posizione -->
 		<%= pages_list_link(:class => "s_list_1") %>
-	</div>
-
-	<div id="bestseller_side" class="s_box clearfix">
-		<h2><%= t(:most_sell_products) %></h2>
-		<%= render :partial => 'spree/shared/sidebar_products', :locals => {:products => most_sell_products} %>
-	</div>
-
-	<div id="featured_side" class="s_box clearfix">
-		<h2><%= t(:out_products) %></h2>
-		<%= render :partial => 'spree/shared/sidebar_products', :locals => {:products => out_products(3)} %>
 	</div>
 
 </div>

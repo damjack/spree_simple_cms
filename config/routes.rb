@@ -2,17 +2,7 @@ Spree::Core::Engine.routes.draw do
   
   namespace :admin do
     resource :store_settings
-
     resources :posts
-
-    resources :blogs do
-      #resources :posts do
-      #  collection do
-      #    post :update_positions
-      #  end
-      #end
-    end
-    resources :articles
     resources :static_pages do
       collection do
         post :update_positions
@@ -22,7 +12,6 @@ Spree::Core::Engine.routes.draw do
         get :in_nav_menu
       end
     end
-    resources :uploads
   end
   
   resources :articles

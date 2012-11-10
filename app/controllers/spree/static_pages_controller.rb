@@ -12,9 +12,9 @@ module Spree
     def create_mail
       unless (params[:name].blank? && params[:email].blank? && params[:messaggio].blank?)
         Spree::ContactMailer.contacts_form(params[:name], params[:email], params[:messaggio]).deliver
-        flash[:notice] = 'Email inviata correttamente'
+        flash[:notice] = t('create_mail_static_page')
       else
-        flash[:notice] = 'Si e` verificato un problema durante l\'invio della mail. Verifica di aver compilato tutti i campi'
+        flash[:notice] = t('not_create_mail_static_page')#'Si e` verificato un problema durante l\'invio della mail. Verifica di aver compilato tutti i campi'
       end
       redirect_to contacts_url
     end

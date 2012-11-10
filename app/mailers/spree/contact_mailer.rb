@@ -9,7 +9,7 @@ module Spree
       @email = email
       @messaggio = text
       mail(:to => "#{email} - #{name}",
-      :subject => "[Spree Ecommerce] - Contatto dal sito web")
+      :subject => Spree::Config[:store_default_contact_subject])
     end
   end
 end

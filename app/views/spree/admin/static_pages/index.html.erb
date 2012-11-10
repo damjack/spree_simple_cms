@@ -1,13 +1,19 @@
+<% content_for :page_title do %>
+  <%= t("simple_cms.page.listing_pages") %>
+<% end %>
+
+<% content_for :page_actions do %>
 <div class="toolbar" data-hook="toolbar">
-	<ul class="actions">
-		<li>
-			<p><%= button_link_to t("simple_cms.page.new_page"), new_object_url, :icon => 'add', :id => 'admin_new_page_link' %></p>
+	<ul class="actions header-action-links inline-menu">
+      	<li id="new_page_link">
+			<%= button_link_to t("simple_cms.page.new_page"), new_object_url, { :remote => true, :icon => 'icon-plus', :id => 'admin_new_page_link' } %>
 		</li>
 	</ul>
 	<br class="clear" />
 </div>
+<% end %>
 
-<h1><%= t("simple_cms.page.listing_pages") %></h1>
+<div id="new_page" data-hook></div>
 
 <table class="index sortable" id="listing_pages" data-hook data-hook data-sortable-link="<%= update_positions_admin_static_pages_url %>">
 	<thead>

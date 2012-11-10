@@ -1,16 +1,41 @@
 <div data-hook="admin_page_form_fields">
-	<%= f.inputs do %>
-		<%= f.input :name, :label => t("simple_cms.page.name") %>
-		<%= f.input :slug, :label => t("simple_cms.page.slug") %>
-		<%= f.input :tag_title, :label => t("simple_cms.page.tag_title") %>
-		<%= f.input :meta_description, :label => t("simple_cms.page.meta_description") %>
-		<%= f.input :meta_keywords, :label => t("simple_cms.page.meta_keywords") %>
-		<%= f.cktext_area :content, :input_html => { :value => @static_page.content }, :label => t("simple_cms.page.content") %>
-		<%= f.input :published_at, :as => :string, :input_html => { :class => 'datepicker'}, :label => t("simple_cms.page.published_at") %>
-		
-		<%= f.input :image_width, :label => t("simple_cms.page.image_width") %>
-		<%= f.input :image_height, :label => t("simple_cms.page.image_height") %>
-		
-		<%= f.input :image, :as => :file, :label => t("simple_cms.page.image.one").capitalize, :hint => f.object.image.blank? ? f.template.content_tag(:span, t("simple_cms.page.no_image")) : f.template.image_tag(f.object.image.url(:thumbnail)) %>
-	<% end %>
+	<div class="eight columns alpha">
+		<%= f.field_container :name do %>
+	      <%= f.label :name, t("simple_cms.page.name") %> <span class="required">*</span>
+	      <%= f.text_field :name, :class => 'fullwidth title' %>
+	      <%= f.error_message_on :name %>
+	    <% end %>
+		<%= f.field_container :slug do %>
+	      <%= f.label :slug, t("simple_cms.page.slug") %> <span class="required">*</span>
+	      <%= f.text_field :slug, :class => 'fullwidth title' %>
+	      <%= f.error_message_on :slug %>
+	    <% end %>
+		<%= f.field_container :tag_title do %>
+	      <%= f.label :tag_title, t("simple_cms.page.tag_title") %>
+	      <%= f.text_field :tag_title, :class => 'fullwidth title' %>
+	      <%= f.error_message_on :tag_title %>
+	    <% end %>
+		<%= f.field_container :meta_description do %>
+	      <%= f.label :meta_description, t("simple_cms.page.meta_description") %>
+	      <%= f.text_field :meta_description, :class => 'fullwidth title' %>
+	      <%= f.error_message_on :meta_description %>
+	    <% end %>
+		<%= f.field_container :meta_keywords do %>
+	      <%= f.label :meta_keywords, t("simple_cms.page.meta_keywords") %>
+	      <%= f.text_field :meta_keywords, :class => 'fullwidth title' %>
+	      <%= f.error_message_on :meta_keywords %>
+	    <% end %>
+		<%= f.field_container :content do %>
+	      <%= f.label :content, t("simple_cms.page.content") %>
+	      <%= f.text_area :content, {:rows => 17, :class => 'fullwidth', :value => @static_page.content} %>
+	      <%= f.error_message_on :content %>
+	    <% end %>
+		<%= f.field_container :published_at do %>
+	      <%= f.label :published_at, t("simple_cms.page.published_at") %>
+	      <%= f.error_message_on :published_at %>
+	      <%= f.text_field :published_at, :value => (@static_page.published_at.blank? ? '' : @static_page.published_at.strftime('%Y/%m/%d')), :class => 'datepicker' %>
+	    <% end %>
+	</div>
 </div>
+
+<div class="clear"></div>

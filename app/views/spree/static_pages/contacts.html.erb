@@ -1,6 +1,6 @@
 <div id="contacts" class="s_info_page grid_9">
 
-	<h2><%= two_color_title(t("simple_cms.contact.email_address_store")) %></h2>
+	<h2><%= t("simple_cms.contact.email_address_store") %></h2>
 
 	<p class="alpha grid_3"><strong><%= Spree::Config[:store_name] %></strong><br> <%= Spree::Config[:store_address] %></p>
 	<p class="grid_3"><strong><%= t("simple_cms.contact.phone_number") %>:</strong><br> <%= Spree::Config[:store_phone_number] %></p>
@@ -10,7 +10,7 @@
 	<span class="clear border_ddd"></span>
 	<br>
 
-	<h2><%= two_color_title t("simple_cms.contact.email_sent_message") %></h2>
+	<h2><%= t("simple_cms.contact.email_sent_message") %></h2>
 
 	<%= form_tag 'contacts/send', :method=> :post, :id=> 'contact_form' do %>
 	<div id="contact_form_icon"></div>

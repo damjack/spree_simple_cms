@@ -1,32 +1,14 @@
-seq<%= javascript_include_tag 'admin/tags' %>
+<%= javascript_include_tag 'admin/tags' %>
 <div data-hook="admin_page_form_fields">
 	<%= f.inputs do %>
 		<%= f.input :name, :label => t(:name) %>
-        <%#= f.label :description %>
-		<%#= f.cktext_area :description, :input_html => { :value => @post.description }, :label => t(:description) %>
         <%= f.label :content,:label => t(:content) %>
 		<%= f.cktext_area :content, :input_html => { :value => @post.content } %>
 		<%= f.input :published_at, :as => :string, :input_html => { :class => 'datepicker'},:label => t(:published_at) %>
 		<%= f.input :active %>
 		
-		<%#= f.input :image_width %>
-		<%#= f.input :image_height %>
-
-		<%#= f.input :image, :as => :file, :label => I18n.t("simple_cms.image.one").capitalize, :hint => f.object.image.blank? ? f.template.content_tag(:span, t("simple_cms.no_image")) : f.template.image_tag(f.object.image.url(:thumbnail)) %>
-		
-		<% @post.uploads.build %>
-		<%#=	f.inputs "Gallery", :for => :uploads do |i|
-	      		i.input :_destroy, :as => :boolean, :label => "elimina?" if !i.object.nil?
-	      		i.input :attachment, :as => :file, :input_html => { :multiple => true }, :label => I18n.t("simple_cms.image.one").capitalize, :hint => i.object.attachment.nil? ? i.template.content_tag(:span, "No Image Yet") : i.template.image_tag(i.object.attachment.url(:thumbnail))
-			end	%>
       <h3> Tags </h3>
       <p> <%= t(:insert_tag_instruction) %> </p>
       <%= f.input :tag_list, :label => t(:tag_list) %>
-        <% Vibratori::Tag.order(:name).each do |v| %>
-          <span class="tags">
-            <%= check_box_tag v.id, v.name %>
-            <%= label_tag v.id, v.name.upcase %>
-          </span>
-        <% end %>
 	<% end %>
 </div>

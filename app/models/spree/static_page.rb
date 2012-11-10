@@ -2,7 +2,7 @@ module Spree
   class StaticPage < Page
     belongs_to :product
     
-    attr_accessible :name, :slug, :tag_title, :meta_description, :meta_keywords, :content, :published_at, :image_width, :image_height
+    attr_accessible :name, :slug, :tag_title, :meta_description, :meta_keywords, :content, :published_at
     scope :published, lambda { where("published_at <= ? AND published_at IS NOT NULL", Time.now) }
     
     def initialize(*args)
@@ -14,6 +14,5 @@ module Spree
     def published?
       !self.published_at.blank?
     end
-    
   end
 end

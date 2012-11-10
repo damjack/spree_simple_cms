@@ -23,16 +23,6 @@ module SpreeSimpleCms
           puts "Skiping rake db:migrate, don't forget to run it!"
         end
       end
-
-      def add_ckeditor
-        res = ask "Would you like to run the ckeditor generator now? [Y/n]"
-        if res == "" || res.downcase == "y"
-          run 'rails generate ckeditor:install --orm=active_record --backend=paperclip'
-        else
-          puts "Skiping rails generate ckeditor:install --orm=active_record --backend=paperclip, don't forget to run it!"
-        end
-      end
-
     end
   end
 end

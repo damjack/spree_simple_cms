@@ -20,7 +20,7 @@ module Spree
       end
 
       def location_after_save
-          admin_blogs_url
+        admin_blogs_url
       end
 
     end
