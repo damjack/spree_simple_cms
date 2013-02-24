@@ -11,7 +11,7 @@ module Spree
     
     def create_mail
       unless (params[:name].blank? && params[:email].blank? && params[:messaggio].blank?)
-        Spree::ContactMailer.contacts_form(params[:name], params[:email], params[:messaggio]).deliver
+        Spree::ContactMailer.contact_form(params[:name], params[:email], params[:messaggio]).deliver
         flash[:notice] = 'Email inviata correttamente'
       else
         flash[:notice] = 'Si e` verificato un problema durante l\'invio della mail. Verifica di aver compilato tutti i campi'
