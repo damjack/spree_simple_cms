@@ -6,7 +6,7 @@ module Spree
       @name = name
       @email = email
       @messaggio = text
-      mail(:to => "#{Spree::Config[:store_default_email]}", :from => "#{name} <#{email}>", :subject => "#{Spree::Config[:site_name]} - Contatto dal sito web")
+      mail(:to => "#{Spree::Config[:store_default_email]}", :subject => "#{Spree::Config[:site_name]} - Contatto dal sito web")
     end
   end
 end
