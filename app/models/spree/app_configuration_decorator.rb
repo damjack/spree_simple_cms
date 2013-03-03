@@ -1,6 +1,4 @@
 Spree::AppConfiguration.class_eval do
-  
-  # TODO in questa classe vanno inserite le impostazioni di default per qualsiasi tipo di estensione compresa nel tema
   preference :store_name, :string, :default => 'Ecommerce demo'
   preference :store_default_email, :string, :default => 'example@ecommerce.com'
   preference :store_address, :string, :default => 'Address, 123 - 123456 City (IT)'

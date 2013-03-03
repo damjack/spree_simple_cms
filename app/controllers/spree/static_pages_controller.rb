@@ -1,12 +1,16 @@
 module Spree
   class StaticPagesController < BaseController
-    before_filter :load_obj
+    before_filter :load_page, :only => :show
+    rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+    helper 'spree/taxons'
+
+    respond_to :html
     
     def contacts
     end
     
     def show
-      @page = Spree::StaticPage.find(params[:id])
+      return unless @static_page
     end
     
     def create_mail
@@ -19,9 +23,13 @@ module Spree
       redirect_to contacts_url
     end
     
-    def load_obj
-      @static_pages = Spree::StaticPage.published
+    private
+    def accurate_title
+      @static_page ? @static_page.title : super
     end
     
+    def load_page
+      @static_page = Spree::StaticPage.find_by_permalink!(params[:id])
+    end
   end
 end

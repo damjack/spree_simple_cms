@@ -10,14 +10,6 @@ module Spree
             def collection
               @search = super.ransack(params[:search])
             end
-            
-            def new
-                @post = @object
-            end
-      
-            def edit
-                @post = @object
-            end
 =begin
   TODO da togliere: sarebbe preferibile lasciare :
        def location_after_save

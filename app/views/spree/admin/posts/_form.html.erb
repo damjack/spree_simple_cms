@@ -30,3 +30,9 @@ seq<%= javascript_include_tag 'admin/tags' %>
         <% end %>
 	<% end %>
 </div>
+
+<%= form.field_container :tag_list do %>
+  <%= form.label :tag_list, t("activerecord.attributes.post.tags") %><br />
+  <%= form.text_field :tag_list, :class => 'text' %><br />
+  <%= error_message_on :post, :tag_list %>
+<% end %>

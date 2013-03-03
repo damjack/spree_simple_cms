@@ -7,7 +7,6 @@ class CreateUploads < ActiveRecord::Migration
       
       t.string :attachment_content_type, :attachment_file_name
       t.integer :attachment_size
-      t.string :type, :limit => 75
       t.integer :attachment_width, :attachment_height
       
       t.integer :position
