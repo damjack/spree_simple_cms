@@ -1,14 +1,29 @@
 module Spree
   module Admin
     class StaticPagesController < ResourceController
+      
       def index
-        params[:search] ||= {}
-        params[:search][:meta_sort] ||= "name.asc"
-        @static_pages = @search.result.page(params[:name]).per(Spree::Config[:admin_products_per_page])
+        respond_with(@collection)
       end
+      
+      def show
+        redirect_to( :action => :edit )
+      end
+      
+      def destroy
+        @static_page = StaticPage.where(:permalink => params[:id]).first!
+        @static_page.delete
 
+        flash.notice = I18n.t('notice_messages.page_deleted')
+
+        respond_with(@static_page) do |format|
+          format.html { redirect_to collection_url }
+          format.js  { render_js_for_destroy }
+        end
+      end
+      
       def published
-        sp = Spree::StaticPage.find(params[:id])
+        sp = StaticPage.find(params[:id])
 
         if sp.update_attribute(:published_at, Time.now)
           flash[:notice] = t("info_published_static_page")
@@ -19,7 +34,7 @@ module Spree
       end
 
       def in_nav_menu
-        sp = Spree::StaticPage.find(params[:id])
+        sp = StaticPage.find(params[:id])
 
         if sp.update_attribute(:in_nav_menu, true)
           flash[:notice] = t("info_in_nav_menu_static_page")
@@ -29,31 +44,25 @@ module Spree
         redirect_to spree.admin_static_pages_path
       end
 
-      def update_positions
-        params[:positions].each do |id, index|
-          Spree::StaticPage.where(:id => id).update_all(:position => index)
-        end
-        respond_to do |format|
-          format.js { render :text => 'Ok' }
-        end
-      end
-
-      def collection
-        @search = super.ransack(params[:search])
-      end
-
-      def new
-        @static_page = @object
-      end
-
-      def edit
-        @static_page = @object
-      end
 
       protected
-      def location_after_save
-        admin_static_pages_url
+      def find_resource
+        StaticPage.find_by_permalink!(params[:id])
       end
+      
+      def location_after_save
+         edit_admin_static_page_url(@static_page)
+      end
+      
+      def collection
+        return @collection if @collection.present?
+        params[:q] ||= {}
+        params[:q][:s] ||= "title asc"
+        
+        @search = super.ransack(params[:q])
+        @collection = @search.result.page(params[:page]).per(Spree::Config[:admin_post_per_page])
+      end
+      
     end
   end
 end

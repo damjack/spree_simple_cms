@@ -4,11 +4,7 @@ module SpreeSimpleCms
 
       def add_javascripts
         append_file "app/assets/javascripts/store/all.js", "//= require store/spree_simple_cms\n"
-        append_file "app/assets/javascripts/admin/all.js", "//= require admin/spree_simple_cms\n"
-      end
-
-      def add_stylesheets
-        inject_into_file "app/assets/stylesheets/admin/all.css", " *= require admin/spree_simple_cms\n", :before => /\*\//, :verbose => true
+        #append_file "app/assets/javascripts/admin/all.js", "//= require admin/spree_simple_cms\n"
       end
 
       def add_migrations
