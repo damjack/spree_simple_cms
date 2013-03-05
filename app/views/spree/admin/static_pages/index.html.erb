@@ -20,8 +20,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @static_pages.each do |sp|%>
-		<tr id="<%= dom_id sp %>" data-hook="admin_static_pages_index_rows">
+		<% @collection.each do |sp|%>
+		<tr id="<%= spree_dom_id sp %>" data-hook="admin_static_pages_index_rows">
 			<td width="270px" class='page_name'>
 				<span class="handle"></span>
 				<%= sp.name %>
@@ -44,6 +44,6 @@
 	</tbody>
 </table>
 
-<%= paginate @static_pages %>
+<%= paginate @collection %>
 
 
