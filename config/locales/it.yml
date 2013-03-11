@@ -1,131 +1,36 @@
----
 it:
-  ckeditor:
-    page_title: "File Manager CKEditor"
-    confirm_delete: "Cancellare il file?"
-    buttons:
-      cancel: "Cancella"
-      upload: "Carica"
-      delete: "Elimina"
-
+  time:
+    am: am
+    formats:
+      default: ! '%a %d %b %Y %H:%M:%S %z'
+      long: ! '%d %B %Y %H:%M'
+      short: ! '%d %b %H:%M'
+    pm: pm
+  cms: "cms"
+  published: "Pubblica"
+  unpublished: "Depubblica"
+  notice_messages:
+    page_deleted: "Pagina eliminata"
+    page_published: "Pagina pubblicata"
+    page_unpublished: "Pagina depubblicata"
   activerecord:
-    errors: &errors
-      format: "%{attribute} %{message}\n"
-      
-      messages: &errors_messages
-        inclusion: "non è incluso nella lista"
-        exclusion: "è riservato"
-        invalid: "non è valido"
-        confirmation: "non coincide con la conferma"
-        record_invalid: "Validazione fallita: %{errors}"
-        taken: è già in uso
-        accepted: "deve essere accettata"
-        empty: "non può essere vuoto"
-        blank: "non può essere lasciato in bianco"
-        too_long:
-          one: "è troppo lungo (il massimo è 1 carattere)"
-          other: "è troppo lungo (il massimo è %{count} caratteri)"
-        too_short:
-          one:  "è troppo corto (il minimo è 1 carattere)"
-          other:  "è troppo corto (il minimo è %{count} caratteri)"
-        wrong_length:
-          one: "è della lunghezza sbagliata (deve essere di 1 carattere)"
-          other: "è della lunghezza sbagliata (deve essere di %{count} caratteri)"
-        not_a_number: "non è un numero"
-        not_an_integer: "non è un intero"
-        greater_than: "deve essere superiore a %{count}"
-        greater_than_or_equal_to: "deve essere superiore o uguale a %{count}"
-        equal_to: "deve essere uguale a %{count}"
-        less_than: "deve essere meno di %{count}"
-        less_than_or_equal_to: "deve essere meno o uguale a %{count}"
-        odd: "deve essere dispari"
-        even: "deve essere pari" 
-      
-      models:
-        static_page:
-          attributes:
-            static_page:
-              published_at: Data Pubblicazione
-              active: Attivo?
-              slug: Link
-              name: Titolo
-              content: Corpo della pagina
-              image_width: Larghezza Immagine
-              image_height: Altezza Immagine
-              image: Immagine
-    attributes:
-      static_page:
-        published_at: Data Pubblicazione
-        active: Attivo?
-        slug: Link
-        name: Titolo
-        content: Corpo della pagina
-        image_width: Larghezza Immagine
-        image_height: Altezza Immagine
-        image: Immagine
     models:
       static_page:
         one: Pagina
-        many: Pagine
-  time:
-    formats:
-      default: "%a %d %b %Y, %H:%M:%S %z"
-      short: "%d/%m/%Y"
-      long: "%d/%m/%Y  %H:%M"
-      hours: "%H:%M"
-      dow: "%A"
-  
-  static_page: Pagina Statica
-  static_pages: Pagine Statiche
-  simple_cms:
-    pages: Pagine
-    listing_pages: Lista Pagine
-    page: Pagina
-    page:
-      one: Pagina
-      many: Pagine
-      name: Titolo
-      search: Cerca
-      tag_title: Tag Titolo
-      meta_description: Meta Description
-      meta_keywords: Meta Keywords
-      content: Corpo della pagina
-      published_at: Pubblicata
-      image_width: Larghezza Immagine
-      image_height: Altezza Immagine
-      link: Link a URL esterno
-      position: Posizione
-      no_image: Nessuna immagine caricata
-      image:
-        one: Immagine
-        many: Immagini
-      information: Informazioni
-      new_page: Nuova Pagina
-      editing_page: Modifica pagina
-      show_page: Visualizza pagine
-      confirm_delete: Sei sicuro?
-    store_settings: Impostazioni Store
-    manage_store_settings: Gestione Impostazioni Store
-    edit_store_settings: Modifica Impostazioni Store
-    contact:
-      phone_number: Telefono
-      fax_number: Fax
-      email_address_store: Indirizzo Negozio
-      email_name: Nome
-      email_address: Indirizzo Email
-      email_object: Messaggio
-      email_sent_button: Invia
-      email_sent_message: Invia un messaggio
-  insert_tag_instruction: "Inserisci i tag separati dalla virgola"
-  posts: "News"
-  write_in: "Scritto il"
-  content: "Contenuto"
-  published_at: "Pubblicato il"
-  name: "Nome"
-  active: "Attivo"
-  new_post: "Nuova news"
-  listing_posts: "Lista news"
-  post: "News"
-  name: "Nome"
-  tag_list: "Lista dei tag"
-  
+        other: Pagine
+      post:
+        one: News
+        other: News
+    attributes:
+      static_page:
+        title: Titolo
+        body: Contenuto
+        active: Attivo?
+        published_at: Data Pubblicazione
+        updated_at: Aggiornata il
+      post:
+        title: Titolo
+        body: Contenuto
+        active: Attivo?
+        published_at: Data Pubblicazione
+        updated_at: Aggiornata il

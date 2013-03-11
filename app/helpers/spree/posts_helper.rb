@@ -1,8 +1,8 @@
 module Spree
   module PostsHelper
-
-    def preview_content(post,limit = 300)
-      raw(truncate(strip_tags(post.content.strip).strip,:length => limit))
+    
+    def preview_content(post, limit = 300)
+      raw(truncate(strip_tags(post.body.strip).strip,:length => limit))
     end
 
     def post_date(post)

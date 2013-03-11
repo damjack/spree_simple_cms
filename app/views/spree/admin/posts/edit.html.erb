@@ -1,14 +1,16 @@
-<div data-hook="admin_post_edit_form_header">
-  <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @post } %>
-  <h1><%= t(:edit_post) %></h1>
-</div>
+<% content_for :page_actions do %>
+  <li><%= button_link_to t(:back_to_posts_list), admin_posts_url, :icon => 'icon-arrow-left' %></li>
+  <li id="new_post_link">
+    <%= button_link_to t(:new_post), new_object_url, { :remote => true, :icon => 'icon-plus', :id => 'admin_new_post' } %>
+  </li>
+<% end %>
 
-<div data-hook="admin_post_edit_form">
-  <%= semantic_form_for([:admin, @post], :html => { :enctype => "multipart/form-data" }) do |f| %>
+<%= render :partial => 'spree/admin/shared/post_tabs', :locals => { :current => 'Post Details' } %>
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @post } %>
+
+<%= form_for [:admin, @post], :method => :put, :html => { :multipart => true } do |f| %>
+  <fieldset class="no-border-top">
     <%= render :partial => 'form', :locals => { :f => f } %>
-
-    <div data-hook="admin_post_edit_form_buttons">
-      <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
-    </div>
-  <% end %>
-</div>
+    <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

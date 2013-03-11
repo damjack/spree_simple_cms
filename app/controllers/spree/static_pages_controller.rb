@@ -1,5 +1,5 @@
 module Spree
-  class StaticPagesController < BaseController
+  class StaticPagesController < Spree::StoreController
     before_filter :load_page, :only => :show
     rescue_from ActiveRecord::RecordNotFound, :with => :render_404
     helper 'spree/taxons'

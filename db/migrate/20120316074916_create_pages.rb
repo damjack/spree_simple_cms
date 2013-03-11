@@ -9,6 +9,11 @@ class CreatePages < ActiveRecord::Migration
       
       t.string :type
       
+      t.string :image_file_name, :image_content_type
+      t.integer :image_file_size
+      t.datetime :image_update_at
+      t.integer :image_width, :image_height
+      
       t.integer :position
       t.boolean :in_nav_menu, :default => 0
       t.datetime :published_at

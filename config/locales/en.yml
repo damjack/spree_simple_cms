@@ -1,121 +1,33 @@
----
 en:
-  ckeditor:
-    page_title: "CKEditor Files Manager"
-    confirm_delete: "Delete file?"
-    buttons:
-      cancel: "Cancel"
-      upload: "Upload"
-      delete: "Delete"
-
+  time:
+    am: am
+    formats:
+      default: ! '%a %d %b %Y %H:%M:%S %z'
+      long: ! '%B %d %Y %H:%M'
+      short: ! '%d %b %H:%M'
+    pm: pm
+  cms: "cms"
+  published: "Public"
+  unpublished: "Not public"
   activerecord:
-    errors: &errors
-      format: "%{attribute} %{message}\n"
-
-      messages: &errors_messages
-        inclusion: "is not included in the list"
-        exclusion: "is reserved"
-        invalid: "is invalid"
-        confirmation: "doesn't match confirmation"
-        record_invalid: "Validation failed: %{errors}"
-        taken: has already been taken
-        accepted: "must be accepted"
-        empty: "can't be empty"
-        blank: "can't be blank"
-        too_long:
-          one: "is too long (maximum is 1 character)"
-          other: "is too long (maximum is %{count} characters)"
-        too_short:
-          one:  "is too short (minimum is 1 character)"
-          other:  "is too short (minimum is %{count} characters)"
-        wrong_length:
-          one: "is the wrong length (should be 1 character)"
-          other: "is the wrong length (should be %{count} characters)"
-        not_a_number: "is not a number"
-        not_an_integer: "must be an integer"
-        greater_than: "must be greater than %{count}"
-        greater_than_or_equal_to: "must be greater than or equal to %{count}"
-        equal_to: "must be equal to %{count}"
-        less_than: "must be less than %{count}"
-        less_than_or_equal_to: "must be less than or equal to %{count}"
-        odd: "must be odd"
-        even: "must be even"
-
-      models:
-        static_page:
-          attributes:
-            static_page:
-              published_at: Published At
-              active: Active?
-              slug: Link
-              name: Title
-              content: Page Content
-              image_width: Width Image
-              image_height: Height Image
-              image: Image
-    attributes:
-      static_page:
-        published_at: Published At
-        active: Active?
-        slug: Link
-        name: Title
-        content: Page Content
-        image_width: Width Image
-        image_height: Height Image
-        image: Image
     models:
       static_page:
         one: Page
-        many: Pages
-  
-  time:
-    formats:
-      default: "%a %d %b %Y, %H:%M:%S %z"
-      short: "%d/%m/%Y"
-      long: "%d/%m/%Y  %H:%M"
-      hours: "%H:%M"
-      dow: "%A"
-  
-  static_page: Pagina Statica
-  static_pages: Pagine Statiche
-  simple_cms:
-    pages: Pages
-    listing_pages: List Pages
-    page: Page
-    page:
-      one: Page
-      many: Pages
-      name: Title
-      search: Search
-      tag_title: Tag Title
-      meta_description: Meta Description
-      meta_keywords: Meta Keywords
-      content: Page Content
-      published_at: Published At
-      image_width: Width Image
-      image_height: Height Image
-      link: Link
-      position: Position
-      no_image: No Image Found
-      image:
-        one: Image
-        many: Images
-      information: Information
-      new_page: New Page
-      editing_page: Edit Page
-      show_page: View Page
-      confirm_delete: Are you sure?
-    store_settings: Setting Store
-    manage_store_settings: Manage Setting Store
-    edit_store_settings: Edit Setting Store
-    contact:
-      phone_number: Phone
-      fax_number: Fax
-      email_address_store: Address Store
-      email_name: Name
-      email_address: Address Email
-      email_object: Message
-      email_sent_button: Send
-      email_sent_message: Send a message
-    insert_tag_instruction: "Enter tags separated by commas"
+        other: Page
+      post:
+        one: News
+        other: News
+    attributes:
+      static_page:
+        title: Title
+        body: Content
+        active: Enable?
+        published_at: Published at
+        updated_at: Updated at
+      post:
+        title: Title
+        body: Content
+        active: Enable?
+        published_at: Published at
+        updated_at: Updated at
   

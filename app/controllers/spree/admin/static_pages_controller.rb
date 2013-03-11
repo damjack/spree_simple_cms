@@ -1,6 +1,7 @@
 module Spree
   module Admin
     class StaticPagesController < ResourceController
+      before_filter :load_data, :except => :index
       
       def index
         respond_with(@collection)
@@ -11,7 +12,7 @@ module Spree
       end
       
       def destroy
-        @static_page = StaticPage.where(:permalink => params[:id]).first!
+        @static_page = Spree::StaticPage.where(:permalink => params[:id]).first!
         @static_page.delete
 
         flash.notice = I18n.t('notice_messages.page_deleted')
@@ -23,35 +24,52 @@ module Spree
       end
       
       def published
-        sp = StaticPage.find(params[:id])
-
-        if sp.update_attribute(:published_at, Time.now)
-          flash[:notice] = t("info_published_static_page")
-        else
-          flash[:error] = t("error_published_static_page")
+        @static_page = Spree::StaticPage.where(:permalink => params[:id]).first!
+        @static_page.update_attribute(:published_at, Time.now)
+        
+        flash[:notice] = t("notice_messages.page_published")
+        
+        respond_with(@static_page) do |format|
+          format.html { redirect_to collection_url }
+          format.js  { render_js_for_destroy }
         end
-        redirect_to spree.admin_static_pages_path
+      end
+      
+      def unpublished
+        @static_page = Spree::StaticPage.where(:permalink => params[:id]).first!
+        @static_page.update_attribute(:published_at, nil)
+        
+        flash[:notice] = t("notice_messages.page_unpublished")
+        
+        respond_with(@static_page) do |format|
+          format.html { redirect_to collection_url }
+          format.js  { render_js_for_destroy }
+        end
       end
 
       def in_nav_menu
-        sp = StaticPage.find(params[:id])
+        @static_page = Spree::StaticPage.where(:permalink => params[:id]).first!
 
-        if sp.update_attribute(:in_nav_menu, true)
+        if @static_page.update_attribute(:in_nav_menu, true)
           flash[:notice] = t("info_in_nav_menu_static_page")
         else
           flash[:error] = t("error_in_nav_menu_static_page")
         end
         redirect_to spree.admin_static_pages_path
       end
-
-
+      
       protected
       def find_resource
-        StaticPage.find_by_permalink!(params[:id])
+        Spree::StaticPage.find_by_permalink!(params[:id])
       end
       
       def location_after_save
          edit_admin_static_page_url(@static_page)
+      end
+      
+      def load_data
+        @taxons = Taxon.order(:name)
+        @products = Product.order(:name)
       end
       
       def collection

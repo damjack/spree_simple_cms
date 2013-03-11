@@ -1,86 +1,62 @@
-<div data-hook="admin_page_form_fields">
-<<<<<<< HEAD
-	<div class="eight columns alpha">
-		<%= f.field_container :name do %>
-	      <%= f.label :name, t("simple_cms.page.name") %> <span class="required">*</span>
-	      <%= f.text_field :name, :class => 'fullwidth title' %>
-	      <%= f.error_message_on :name %>
-	    <% end %>
-		<%= f.field_container :slug do %>
-	      <%= f.label :slug, t("simple_cms.page.slug") %> <span class="required">*</span>
-	      <%= f.text_field :slug, :class => 'fullwidth title' %>
-	      <%= f.error_message_on :slug %>
-	    <% end %>
-		<%= f.field_container :tag_title do %>
-	      <%= f.label :tag_title, t("simple_cms.page.tag_title") %>
-	      <%= f.text_field :tag_title, :class => 'fullwidth title' %>
-	      <%= f.error_message_on :tag_title %>
-	    <% end %>
-		<%= f.field_container :meta_description do %>
-	      <%= f.label :meta_description, t("simple_cms.page.meta_description") %>
-	      <%= f.text_field :meta_description, :class => 'fullwidth title' %>
-	      <%= f.error_message_on :meta_description %>
-	    <% end %>
-		<%= f.field_container :meta_keywords do %>
-	      <%= f.label :meta_keywords, t("simple_cms.page.meta_keywords") %>
-	      <%= f.text_field :meta_keywords, :class => 'fullwidth title' %>
-	      <%= f.error_message_on :meta_keywords %>
-	    <% end %>
-		<%= f.field_container :content do %>
-	      <%= f.label :content, t("simple_cms.page.content") %>
-	      <%= f.text_area :content, {:rows => 17, :class => 'fullwidth', :value => @static_page.content} %>
-	      <%= f.error_message_on :content %>
-	    <% end %>
-		<%= f.field_container :published_at do %>
-	      <%= f.label :published_at, t("simple_cms.page.published_at") %>
-	      <%= f.error_message_on :published_at %>
-	      <%= f.text_field :published_at, :value => (@static_page.published_at.blank? ? '' : @static_page.published_at.strftime('%Y/%m/%d')), :class => 'datepicker' %>
-	    <% end %>
-	</div>
+<div data-hook="admin_static_page_form_fields">
+  
+  <div class="left eight columns alpha" data-hook="admin_static_page_form_left">    
+    <%= f.field_container :title do %>
+      <%= f.label :title, raw(t(:title) + content_tag(:span, ' *', :class => 'required')) %>
+      <%= f.text_field :title, :class => 'fullwidth title' %>
+      <%= f.error_message_on :title %>
+    <% end %>
+
+    <%= f.field_container :permalink do %>
+      <%= f.label :permalink, raw(t(:permalink) + content_tag(:span, ' *',  :class => "required")) %>
+      <%= f.text_field :permalink, :class => 'fullwidth title' %>
+      <%= f.error_message_on :permalink %>
+    <% end %>
+
+    <%= f.field_container :body do %>
+      <%= f.label :body, t(:body) %>
+      <%= f.text_area :body, {:rows => 20, :class => 'fullwidth'} %>
+      <%= f.error_message_on :body %>
+    <% end %>
+  </div>
+
+  <div class="right four columns omega" data-hook="admin_static_page_form_right">
+    <%= f.field_container :published_at do %>
+      <%= f.label :published_at, t(:published_at) %>
+      <%= f.error_message_on :published_at %>
+      <%= f.text_field :published_at, :value => datepicker_field_value(@static_page.published_at), :class => 'datepicker' %>
+    <% end %>
+
+    <%= f.field_container :product do %>
+      <%= f.label :product_ids, t(:product) %>
+      <%= f.collection_select(:product_ids, @products, :id, :name, { :include_blank => 'None' }, { :class => 'select2' }) %>
+      <%= f.error_message_on :product %>
+    <% end %>
+  </div>
+
+  <div class="twelve columns alpha omega">
+    <%= f.field_container :taxons do %>
+      <%= f.label :taxon_ids, t(:taxons) %><br />
+      <%= f.hidden_field :taxon_ids, :value => @static_page.taxon_ids.join(',') %>
+    <% end %>
+  </div>
+
+  <!-- <h2><%= t(:metadata) %></h2> -->
+  <div data-hook="admin_static_page_form_meta" class="alpha omega twelve columns">
+    <%= f.field_container :meta_keywords do %>
+      <%= f.label :meta_keywords, t(:meta_keywords) %>
+      <%= f.text_field :meta_keywords, :class => 'fullwidth' %>
+    <% end %>
+
+    <%= f.field_container :meta_description do %>
+      <%= f.label :meta_description, t(:meta_description) %>
+      <%= f.text_field :meta_description, :class => 'fullwidth' %>
+    <% end %>
+  </div>
+
+  <div class="clear"></div>
+
+  <div data-hook="admin_static_page_form_additional_fields"></div>
+
+  <div class="clear"></div>
 </div>
-
-<div class="clear"></div>
-=======
-	<div class="clearfix">
-		<div class="left" data-hook="admin_product_form_left">
-			<%= f.field_container :name do %>
-				<%= f.label :name, t(:name) %> <span class="required">*</span><br />
-				<%= f.text_field :name, :class => 'fullwidth title' %>
-				%= f.error_message_on :name %>
-			<% end %>
-
-			<%= f.field_container :body do %>
-				<%= f.label :body, t(:body) %><br />
-				<%= f.text_area :body, {:cols => 60, :rows => 4, :class => 'fullwidth'} %>
-				<%= f.error_message_on :body %>
-			<% end %>
-		</div>
-		<div class="right" data-hook="admin_product_form_right">
-			<%= f.field_container :permalink do %>
-				<%= f.label :permalink, t(:permalink) %> <span class="required">*</span><br />
-				<%= f.text_field :permalink, :class => 'fullwidth title' %>
-				<%= f.error_message_on :permalink %>
-			<% end %>
-
-			<%= f.field_container :published_at do %>
-				<%= f.label :published_at, t(:published_at) %><br />
-				<%= f.error_message_on :published_at %>
-				<%= f.text_field :published_at, :class => 'datepicker' %>
-			<% end %>
-		</div>
-	</div>
-
-	<h2><%= t(:metadata) %></h2>
-	<div data-hook="admin_product_form_meta">
-		<%= f.field_container :meta_keywords do %>
-			<%= f.label :meta_keywords, t(:meta_keywords) %><br />
-			<%= f.text_field :meta_keywords, :class => 'fullwidth' %>
-		<% end %>
-
-		<%= f.field_container :meta_description do %>
-			<%= f.label :meta_description, t(:meta_description) %><br />
-			<%= f.text_field :meta_description, :class => 'fullwidth' %>
-		<% end %>
-	</div>
-</div>
->>>>>>> 1-1-stable

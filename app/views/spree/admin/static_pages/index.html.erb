@@ -13,43 +13,91 @@
 </div>
 <% end %>
 
+<% content_for :table_filter_title do %>
+	<%= t(:search) %>
+<% end %>
+
+<% content_for :table_filter do %>
+<div data-hook="admin_static_pages_sidebar">
+	<%= search_form_for [:admin, @search] do |f| %>      
+	<%- locals = {:f => f} %>
+	<div data-hook="admin_static_pages_index_search">
+		<div class="alpha five columns">
+			<div class="field">
+				<%= f.label :title_cont, t(:title) %>
+				<%= f.text_field :title_cont, :size => 15 %>
+			</div>  
+		</div>
+		<div class="five columns">
+			<div class="field">
+				<%= f.label :body_cont, t(:body) %>
+				<%= f.text_field :body_cont, :size => 15 %>
+			</div>
+		</div>
+		<div class="four field-block columns">
+			<div class="date-range-filter field">
+				<%= label_tag nil, t(:date_range) %>
+				<div class="date-range-fields">
+					<%= f.text_field :published_at_gt, :class => 'datepicker datepicker-from', :value => params[:q][:published_at_gt], :placeholder => t(:start) %>
+					<span class="range-divider">
+						<i class="icon-arrow-right"></i>
+					</span>
+					<%= f.text_field :published_at_lt, :class => 'datepicker datepicker-to', :value => params[:q][:published_at_lt], :placeholder => t(:stop) %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="form-buttons actions filter-actions" data-hook="admin_static_pages_index_search_buttons">
+		<%= button t(:search), 'icon-search' %>
+	</div>
+	<% end %>
+</div>
+<% end %>
+
 <div id="new_page" data-hook></div>
 
 <table class="index sortable" id="listing_pages" data-hook data-sortable-link="<%= update_positions_admin_static_pages_url %>">
+	<colgroup>
+       <col style="width: 15%;">
+       <col style="width: 48%;">
+       <col style="width: 17%;">
+       <col style="width: 17%;">
+    </colgroup>
 	<thead>
-		<tr data-hook="admin_pages_index_headers">
-			<th><%= sort_link @search,:title, t(:page), {}, {:title => t(:title)} %></th>
-			<th><%= t(:position) %></th>
-			<th><%= t(:in_nav_menu) %></th>
-			<th><%= t(:published_at) %></th>
-			<th data-hook="admin_static_pages_index_header_actions"></th>
+		<tr data-hook="admin_static_pages_index_headers">
+			<th><%= sort_link @search,:title, t(:title, :scope => 'activerecord.attributes.spree/page') %></th>
+			<th><%= t(:body) %></th>
+			<th><%= sort_link @search, :published_at, t(:published_at, :scope => 'activerecord.attributes.spree/page') %></th>
+			<th data-hook="admin_static_pages_index_header_actions" class="actions"></th>
 		</tr>
 	</thead>
 	<tbody>
-		<% @collection.each do |sp|%>
-		<tr id="<%= spree_dom_id sp %>" data-hook="admin_static_pages_index_rows">
+		<% @collection.each do |static_page|%>
+		<tr id="<%= spree_dom_id static_page %>" data-hook="admin_static_pages_index_rows">
 			<td width="270px" class='page_name'>
 				<span class="handle"></span>
-				<%= sp.name %>
+				<%= static_page.title %>
 			</td>
-			<td><%= sp.position %></td>
-			<td><%= sp.in_nav_menu %></td>
-			<td><%= l(sp.published_at, :format => :short) rescue "" %></td>
-			<td class="actions" data-hook="admin_pages_index_row_actions">
-				<%= link_to_edit sp, :class => 'edit' %> &nbsp;
-				<%= link_to_delete sp %>
-				<% unless sp.published? %>
-				<%= link_to_with_icon 'tick', t('published'), {:action => 'published', :id => sp.id} %>
-				<% end %>
-				<% if (sp.in_nav_menu.blank? || sp.in_nav_menu != 1) %>
-				<%= link_to_with_icon 'tick', t('in_nav_menu'), {:action => 'in_nav_menu', :id => sp.id} %>
-				<% end %>
+			<td><%= truncate(static_page.body, :length => 150, :omission => '...') %></td>
+			<td><%= l(static_page.published_at, :format => :long) rescue '' %></td>
+			<td class="actions" data-hook="admin_static_pages_index_row_actions">
+				<%= link_to_edit static_page, :no_text => true, :class => 'edit' %>
+				&nbsp;
+				<%= link_to_delete static_page, :no_text => true %>
+				&nbsp;
+				<%= link_to_with_icon 'icon-check', t(:published), published_admin_static_page_url(static_page), :no_text => true if !static_page.published? %>
+				&nbsp;
+				<%= link_to_with_icon 'icon-check-empty', t(:unpublished), unpublished_admin_static_page_url(static_page), :no_text => true if static_page.published? %>
+				<%# if (static_page.in_nav_menu.blank? || static_page.in_nav_menu != 1) %>
+				<%#= link_to_with_icon 'icon-th-list', "", in_nav_menu_admin_static_page_path(static_page), :no_text => true %>
+				<%# end %>
 			</td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
 
-<%= paginate @static_pages %>
+<%= paginate @collection %>
 
 

@@ -1,0 +1,37 @@
+#admin-menu li div.dropdown {
+	display: none;
+	position: absolute;
+}
+#admin-menu li .dropdown > p {
+	width: 200px !important;
+}
+#admin-menu p {
+	min-width: 90px;
+}
+ul.inline-menu p {
+	display: inline-block;
+}
+#admin-menu li .dropdown a {
+	background-color: #5498DA;
+}
+#admin-menu li .dropdown a:hover {
+	background-color: #9FC820;
+}
+
+#admin-menu li .dropdown a:hover::after, #admin-menu li.selected .dropdown a::after {
+	position: absolute;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	bottom: 0px;
+	margin: 0px;
+	left: 0px;
+	z-index: 1;
+}
+
+[data-hook="admin_static_page_form_fields"] input, [data-hook="admin_static_page_form_fields"] select, [data-hook="admin_static_page_form_fields"] textarea, [data-hook="admin_static_page_form_fields"] .select2-container,
+[data-hook="new_static_page_attrs"] input, [data-hook="new_static_page_attrs"] select, [data-hook="new_static_page_attrs"] textarea, [data-hook="new_static_page_attrs"] .select2-container,
+[data-hook="admin_post_form_fields"] input, [data-hook="admin_post_form_fields"] select, [data-hook="admin_post_form_fields"] textarea, [data-hook="admin_post_form_fields"] .select2-container,
+[data-hook="new_post_attrs"] input, [data-hook="new_post_attrs"] select, [data-hook="new_post_attrs"] textarea, [data-hook="new_post_attrs"] .select2-container {
+	width: 100%;
+}

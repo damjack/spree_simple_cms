@@ -1,6 +1,8 @@
 module Spree
   module Admin
     class PostsController < ResourceController
+      before_filter :load_data, :except => :index
+      
       def index
         respond_with(@collection)
       end
@@ -10,12 +12,12 @@ module Spree
       end
       
       def destroy
-        @static_page = StaticPage.where(:permalink => params[:id]).first!
-        @static_page.delete
+        @post = Spree::Post.where(:permalink => params[:id]).first!
+        @post.delete
 
-        flash.notice = I18n.t('notice_messages.page_deleted')
+        flash.notice = I18n.t('notice_messages.post_deleted')
 
-        respond_with(@static_page) do |format|
+        respond_with(@post) do |format|
           format.html { redirect_to collection_url }
           format.js  { render_js_for_destroy }
         end
@@ -23,11 +25,16 @@ module Spree
       
       protected
       def find_resource
-        Post.find_by_permalink!(params[:id])
+        Spree::Post.find_by_permalink!(params[:id])
       end
       
       def location_after_save
         edit_admin_post_url(@post)
+      end
+      
+      def load_data
+        @taxons = Taxon.order(:name)
+        @products = Product.order(:name)
       end
       
       def collection

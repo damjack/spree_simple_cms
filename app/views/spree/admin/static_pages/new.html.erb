@@ -1,12 +1,46 @@
-<h1><%= t(:new_page) %></h1>
 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @static_page } %>
 
-<div data-hook="admin_page_new_form">
-  <%= form_for([:admin, @static_page], :html => { :multipart => true }) do |f| %>
-    <%= render :partial => 'form', :locals => { :f => f } %>
+<%= form_for [:admin, @static_page], :html => { :multipart => true } do |f| %>
+<fieldset data-hook="new_static_page">
+	<legend align="center"><%= t(:new_static_page) %></legend>
+	<div data-hook="new_static_page_attrs" class="row">
+		<div class="left alpha eleven columns">
+			<%= f.field_container :title do %>
+				<%= f.label :title, t(:title) %> <span class="required">*</span><br />
+				<%= f.text_field :title, :class => 'fullwidth title' %>
+				<%= f.error_message_on :title %>
+			<% end %>
 
-    <div data-hook="admin_page_new_form_buttons">
-      <%= render :partial => 'spree/admin/shared/new_resource_links' %>
-    </div>
-  <% end %>
-</div>
+			<%= f.field_container :body do %>
+				<%= f.label :body, t(:body) %><br />
+				<%= f.text_area :body, {:rows => 20, :class => 'fullwidth'} %>
+				<%= f.error_message_on :body %>
+			<% end %>  
+		</div>
+		
+		<div class="right four columns">			
+			<%= f.field_container :product do %>
+		      <%= f.label :product_ids, t(:product) %><br />
+		      <%= f.collection_select(:product_ids, @products, :id, :name, { :include_blank => 'None' }, { :class => 'select2' }) %>
+		      <%= f.error_message_on :product %>
+		    <% end %>
+			
+			<div class="clear"></div>
+			
+			<%= f.field_container :taxons do %>
+		      <%= f.label :taxon_ids, t(:taxons) %><br />
+		      <%= f.hidden_field :taxon_ids, :value => @static_page.taxon_ids.join(',') %>
+		    <% end %>
+		</div>
+
+		<div class="right omega four columns">
+			<%= f.field_container :published_at do %>
+			<%= f.label :published_at, t(:published_at) %>
+			<%= f.error_message_on :published_at %>
+			<%= f.text_field :published_at, :class => 'datepicker fullwidth' %>
+			<% end %>
+		</div>
+	</div>
+  <%= render :partial => 'spree/admin/shared/new_resource_links' %>
+</fieldset>
+<% end %>

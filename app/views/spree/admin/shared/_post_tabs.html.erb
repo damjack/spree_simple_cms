@@ -1,0 +1,21 @@
+<% content_for :page_title do %>
+  <%= t(:editing_post) %> &ldquo;<%= @post.title %>&rdquo;
+<% end %>
+
+<% content_for :sidebar_title do %>
+  <span class="title"><%= @post.title %></span>
+<% end %>
+
+<% content_for :sidebar do %>
+  <nav class="menu">
+    <ul data-hook="admin_post_tabs">
+      <li<%== ' class="active"' if current == 'Post Details' %>>
+        <%= link_to_with_icon 'icon-edit', t(:post_details), edit_admin_post_url(@post) %>
+      </li>
+      <li<%== ' class="active"' if current == 'Images' %>>
+        <%= link_to_with_icon 'icon-picture', t(:images), admin_post_images_url(@post) %>
+      </li>
+    </ul>
+  </nav>
+
+<% end %>

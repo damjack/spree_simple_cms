@@ -6,14 +6,28 @@ module Spree
     has_many :uploads, :as => :uploadable
     
     attr_accessible :title, :permalink, :tag_title, :meta_description, :meta_keywords, :body, :link,
-                    :position, :in_nav_menu, :published_at
+                    :position, :in_nav_menu, :published_at, :taxon_ids, :product_ids
     
     accepts_nested_attributes_for :uploads, :allow_destroy => true
     
     make_permalink :order => :title
     
+    validates_presence_of :title
+    
     def to_param
       permalink.present? ? permalink : (permalink_was || title.to_s.to_url)
+    end
+    
+    def published?
+      !self.published_at.blank?
+    end
+    
+    def self.retrive_by_taxon(taxon_id)
+      Spree::Taxon.find(taxon_id).pages
+    end
+
+    def self.retrive_by_product(product_id)
+      Spree::Product.find(product_id).pages
     end
     
     def link_is_blank?

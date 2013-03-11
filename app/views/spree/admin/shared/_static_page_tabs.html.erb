@@ -1,0 +1,21 @@
+<% content_for :page_title do %>
+  <%= t(:editing_static_page) %> &ldquo;<%= @static_page.title %>&rdquo;
+<% end %>
+
+<% content_for :sidebar_title do %>
+  <span class="title"><%= @static_page.title %></span>
+<% end %>
+
+<% content_for :sidebar do %>
+  <nav class="menu">
+    <ul data-hook="admin_static_page_tabs">
+      <li<%== ' class="active"' if current == 'Static Page Details' %>>
+        <%= link_to_with_icon 'icon-edit', t(:static_page_details), edit_admin_static_page_url(@static_page) %>
+      </li>
+      <li<%== ' class="active"' if current == 'Images' %>>
+        <%= link_to_with_icon 'icon-picture', t(:images), admin_static_page_images_url(@static_page) %>
+      </li>
+    </ul>
+  </nav>
+
+<% end %>
