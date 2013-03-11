@@ -1,14 +1,52 @@
-<div data-hook="admin_post_new_form_header">
-  <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @post } %>
-  <h1><%= t(:new_post) %></h1>
-</div>
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @post } %>
 
-<div data-hook="admin_post_new_form">
-  <%= semantic_form_for([:admin, @post], :html => { :enctype => "multipart/form-data" }) do |f| %>
-    <%= render :partial => 'form', :locals => { :f => f } %>
-
-    <div data-hook="admin_post_new_form_buttons">
-      <%= render :partial => 'spree/admin/shared/new_resource_links' %>
-    </div>
+<%= form_for [:admin, @post], :html => { :multipart => true } do |f| %>
+<fieldset data-hook="new_post">
+  
+  <%= f.field_container :name do %>
+    <%= f.label :name, t(:name) %> <span class="required">*</span><br />
+    <%= f.text_field :name, :class => 'fullwidth title' %>
+    <%= f.error_message_on :name %>
   <% end %>
-</div>
+
+  <div class="clearfix" data-hook="new_post_attrs">
+    <div class="left" style="width: 69%;">
+        <%= f.field_container :content do %>
+          <%= f.label :content, t(:content) %><br />
+          <%= f.cktext_area :content, :rows => 16, :class => "fullwidth" %>
+          <%= f.error_message_on :content %>
+        <% end %>
+
+    </div>
+    <div class="right" style="width: 30%;">
+
+      <%= f.field_container :attachment do %>
+        <%= f.label :attachment, t(:attachment) %><br />
+        <%= f.file_field :attachment %>
+        <%= f.error_message_on :attachment %>
+      <% end %>
+
+      <p>
+        <%= f.label :published_at, t(:published_at) %><br />
+        <%= f.error_message_on :published_at %>
+        <%= f.text_field :published_at, :class => 'datepicker', :style => "width:150px" %>
+      </p>
+		
+		<label>
+		    <%= f.label :active, t(:active) %>
+		    <%= f.check_box :active %>
+		  </label>
+
+	<p>
+        <%= f.label :tag_list, t(:tag_list) %><br />
+        <%= f.error_message_on :tag_list %>
+        <%= f.text_field :tag_list, :class => 'fullwidth' %>
+      </p>
+
+    </div>
+  </div>
+
+  <%= render :partial => 'spree/admin/shared/new_resource_links' %>
+  
+</fieldset>
+<% end %>

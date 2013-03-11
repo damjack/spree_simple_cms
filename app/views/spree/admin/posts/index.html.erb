@@ -1,7 +1,7 @@
 <div class="toolbar" data-hook="toolbar">
   <ul class="actions">
-    <li>
-      <p><%= button_link_to t(:new_post), new_object_url, :icon => 'add', :id => 'admin_new_post_link' %></p>
+    <li id="new_new_post_link">
+      <%= button_link_to t(:new_post), new_object_url, {:remote => true, :icon => 'add', :id => 'admin_new_post'} %>
     </li>
   </ul>
   <br class="clear" />
@@ -9,27 +9,64 @@
 
 <h1><%= t(:listing_posts) %></h1>
 
-<table class="index" id="listing_posts" data-hook>
-  <thead>
-    <tr data-hook="admin_posts_index_headers">
-      <th><%= sort_link @search,:name, t(:post), {}, {:title => 'blog_name_title'} %></th>
-	  <th><%= t(:published_at) %></th>
-      <th data-hook="admin_posts_index_header_actions"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @collection.each do |post|%>
-      <tr id="<%= spree_dom_id post %>" data-hook="admin_posts_index_rows">
-        <td width="270px" class='blog_name'><%=link_to post.name, object_url(post) %></td>
-		<td width="80px" class='blog_published_at'><%= l post.published_at %></td>
-        <td data-hook="admin_posts_index_row_actions">
-          <%= link_to_edit post, :class => 'edit' %> &nbsp;
-          <%= link_to_delete post %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
+<div id="new_post" data-hook></div>
+
+<table class="index" id="listing_posts">
+  <tr data-hook="admin_posts_index_headers">
+    <th><%= sort_link @search,:name, t(:name), { :default_order => "desc" }, {:title => 'admin_posts_listing_name_title'} %></th>
+	<th style="width: 45%"><%= t(:content) %></th>
+	<th><%= sort_link @search,:published_at, t(:published_at), {}, {:title => 'admin_posts_listing_published_at_title'} %></th>
+    <th data-hook="admin_posts_index_header_actions"></th>
+  </tr>
+<% @collection.each do |post| %>
+  <tr id="<%= spree_dom_id post %>" data-hook="admin_posts_index_rows">
+    <td><%= post.name %></td>
+    <td><%= truncate(post.content, :length => 150, :omission => '...') %></td>
+	<td><%= l(post.published_at, :format => :long) rescue '' %></td>
+    <td class="actions" data-hook="admin_posts_index_row_actions">
+      <%= link_to_edit post, :class => 'edit' %>
+      &nbsp;
+      <%= link_to_delete post %>
+    </td>
+  </tr>
+<% end %>
 </table>
+<%= paginate @collection %>
 
-<%= paginate(@collection) %>
+<% content_for :sidebar do %>
+  <div data-hook="admin_posts_sidebar">
+    <%= search_form_for [:admin, @search] do |f| %>
+      <div class="box">
+        <h3><%= t(:search) %></h3>
+		<%= label_tag nil, t(:date_range) %><br />
+	      <div class="date-range-filter">
+	        <div class="left sub-field">
+	          <%= f.text_field :published_at_gt, :class => 'datepicker' %><br />
+	          <%= label_tag nil, t(:start), :class => 'sub' %>
+	        </div>
+	        <div class="right sub-field">
+	          <%= f.text_field :published_at_lt, :class => 'datepicker' %><br />
+	          <%= label_tag nil, t(:stop), :class => 'sub' %>
+	        </div>
+	      </div>
+        <%- locals = {:f => f} %>
+        <div data-hook="admin_posts_index_search">
+          <p>
+            <%= f.label :name_cont, t(:name) %><br />
+            <%= f.text_field :name_cont, :size => 15 %>
+          </p>
+          <p>
+            <%= f.label :content_cont, t(:content) %><br />
+            <%= f.text_field :content_cont, :size => 15 %>
+          </p>
+        </div>
 
+        <div data-hook="admin_posts_index_search_buttons">
+          <p class="form-buttons">
+            <%= button t(:search) %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

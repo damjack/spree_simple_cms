@@ -8,7 +8,7 @@ module SpreeSimpleCms
       end
 
       def add_stylesheets
-        inject_into_file "app/assets/stylesheets/admin/all.css", " *= require admin/spree_simple_cms\n", :before => /\*\//, :verbose => true
+        #inject_into_file "app/assets/stylesheets/admin/all.css", " *= require admin/spree_simple_cms\n", :before => /\*\//, :verbose => true
       end
 
       def add_migrations
@@ -21,15 +21,6 @@ module SpreeSimpleCms
           run 'bundle exec rake db:migrate'
         else
           puts "Skiping rake db:migrate, don't forget to run it!"
-        end
-      end
-
-      def add_ckeditor
-        res = ask "Would you like to run the ckeditor generator now? [Y/n]"
-        if res == "" || res.downcase == "y"
-          run 'rails generate ckeditor:install --orm=active_record --backend=paperclip'
-        else
-          puts "Skiping rails generate ckeditor:install --orm=active_record --backend=paperclip, don't forget to run it!"
         end
       end
 

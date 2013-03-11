@@ -11,16 +11,39 @@ module Spree
       def show
         redirect_to( :action => :edit )
       end
+      
+      def destroy
+        @static_page = StaticPage.where(:permalink => params[:id]).first!
+        @static_page.delete
+
+        flash.notice = I18n.t('notice_messages.post_deleted')
+
+        respond_with(@static_page) do |format|
+          format.html { redirect_to collection_url }
+          format.js  { render_js_for_destroy }
+        end
+      end
 
       def published
-        sp = Spree::StaticPage.find(params[:id])
-
-        if sp.update_attribute(:published_at, Time.now)
-          flash[:notice] = t("info_published_static_page")
-        else
-          flash[:error] = t("error_published_static_page")
+        @static_page = StaticPage.where(:permalink => params[:id]).first!
+        @static_page.update_attribute(:published_at, Time.now)
+        
+        flash.notice = I18n.t('notice_messages.static_page_published')
+        
+        respond_with(@static_page) do |format|
+          format.html { redirect_to collection_url }
         end
-        redirect_to spree.admin_static_pages_path
+      end
+      
+      def unpublished
+        @static_page = StaticPage.where(:permalink => params[:id]).first!
+        @static_page.update_attribute(:published_at, nil)
+        
+        flash.notice = I18n.t('notice_messages.static_page_unpublished')
+        
+        respond_with(@static_page) do |format|
+          format.html { redirect_to collection_url }
+        end
       end
 
       def in_nav_menu
@@ -33,18 +56,22 @@ module Spree
         end
         redirect_to spree.admin_static_pages_path
       end
-
+      
       def update_positions
         params[:positions].each do |id, index|
-          Spree::StaticPage.update_all(['position=?', index], ['id=?', id])
+          StaticPage.where(:id => id).update_all(:position => index)
         end
 
         respond_to do |format|
-          format.js { render :text => 'Ok' }
+          format.js  { render :text => 'Ok' }
         end
       end
 
       protected
+      def find_resource
+        Spree::StaticPage.find_by_permalink!(params[:id])
+      end
+      
       def location_after_save
         edit_admin_static_page_url(@static_page)
       end
@@ -56,10 +83,7 @@ module Spree
         params[:q][:s] ||= "name asc"
 
         @search = super.ransack(params[:q])
-        @collection = @search.result.
-            published.
-            page(params[:page]).
-            per(Spree::Config[:admin_products_per_page])
+        @collection = @search.result.page(params[:page]).per(12)
       end
     end
   end

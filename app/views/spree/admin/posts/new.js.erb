@@ -1,0 +1,3 @@
+$("#new_post").html('<%= escape_javascript(render :template => "spree/admin/posts/new", :formats => [:html], :handlers => [:erb]) %>');
+handle_date_picker_fields();
+$("#admin_new_post").parent().hide();

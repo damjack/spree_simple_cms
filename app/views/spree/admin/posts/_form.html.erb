@@ -1,32 +1,65 @@
-seq<%= javascript_include_tag 'admin/tags' %>
-<div data-hook="admin_page_form_fields">
-	<%= f.inputs do %>
-		<%= f.input :name, :label => t(:name) %>
-        <%#= f.label :description %>
-		<%#= f.cktext_area :description, :input_html => { :value => @post.description }, :label => t(:description) %>
-        <%= f.label :content,:label => t(:content) %>
-		<%= f.cktext_area :content, :input_html => { :value => @post.content } %>
-		<%= f.input :published_at, :as => :string, :input_html => { :class => 'datepicker'},:label => t(:published_at) %>
-		<%= f.input :active %>
-		
-		<%#= f.input :image_width %>
-		<%#= f.input :image_height %>
+<%= javascript_include_tag 'admin/tags' %>
+<div data-hook="admin_post_form_fields">
+  <div class="clearfix">
+    <div class="left" style="width: 69%;" data-hook="admin_post_form_left">
+      <%= f.field_container :name do %>
+        <%= f.label :name, t(:name) %> <span class="required">*</span><br />
+        <%= f.text_field :name, :class => 'fullwidth title' %>
+        <%= f.error_message_on :name %>
+      <% end %>
 
-		<%#= f.input :image, :as => :file, :label => I18n.t("simple_cms.image.one").capitalize, :hint => f.object.image.blank? ? f.template.content_tag(:span, t("simple_cms.no_image")) : f.template.image_tag(f.object.image.url(:thumbnail)) %>
-		
-		<% @post.uploads.build %>
-		<%#=	f.inputs "Gallery", :for => :uploads do |i|
-	      		i.input :_destroy, :as => :boolean, :label => "elimina?" if !i.object.nil?
-	      		i.input :attachment, :as => :file, :input_html => { :multiple => true }, :label => I18n.t("simple_cms.image.one").capitalize, :hint => i.object.attachment.nil? ? i.template.content_tag(:span, "No Image Yet") : i.template.image_tag(i.object.attachment.url(:thumbnail))
-			end	%>
-      <h3> Tags </h3>
-      <p> <%= t(:insert_tag_instruction) %> </p>
-      <%= f.input :tag_list, :label => t(:tag_list) %>
-        <% Vibratori::Tag.order(:name).each do |v| %>
-          <span class="tags">
-            <%= check_box_tag v.id, v.name %>
-            <%= label_tag v.id, v.name.upcase %>
-          </span>
-        <% end %>
-	<% end %>
+      <%= f.field_container :permalink do %>
+        <%= f.label :permalink, t(:permalink) %> <span class="required">*</span><br />
+        <%= f.text_field :permalink, :class => 'fullwidth title' %>
+        <%= f.error_message_on :permalink %>
+      <% end %>
+
+      <%= f.field_container :content do %>
+        <%= f.label :content, t(:content) %><br />
+        <%= f.cktext_area :content, {:cols => 180, :rows => 10, :class => 'fullwidth'} %>
+        <%= f.error_message_on :content %>
+      <% end %>
+    </div>
+    <div class="right" style="width: 30%;" data-hook="admin_post_form_right">
+		<h2><%= t(:metadata) %></h2>
+        <%= f.field_container :meta_keywords do %>
+	      <%= f.label :meta_keywords, t(:meta_keywords) %><br />
+	      <%= f.text_field :meta_keywords, :class => 'fullwidth' %>
+	    <% end %>
+
+	    <%= f.field_container :meta_description do %>
+	      <%= f.label :meta_description, t(:meta_description) %><br />
+	      <%= f.text_field :meta_description, :class => 'fullwidth' %>
+	    <% end %>
+
+      <%= f.field_container :published_at do %>
+        <%= f.label :published_at, t(:published_at) %><br />
+        <%= f.error_message_on :published_at %>
+        <%= f.text_field :published_at, :class => 'datepicker' %>
+      <% end %>
+	
+		<div data-hook="thumbnail">
+	      <p><%= t(:thumbnail) %>:</p>
+	      <p><%= link_to image_tag(@post.attachment.url(:mini)), @post.attachment.url(:medium) %></p>
+	    </div>
+		<%= f.field_container :attachment do %>
+	        <%= f.label :attachment, t(:attachment) %><br />
+	        <%= f.file_field :attachment %>
+	        <%= f.error_message_on :attachment %>
+	      <% end %>
+	
+		<label>
+		    <%= f.label :active, t(:active) %>
+		    <%= f.check_box :active %>
+		  </label>
+    </div>
+  </div>
+	
+  <div data-hook="admin_post_form_meta">
+		<%= f.field_container :tag_list do %>
+        <%= f.label :tag_list, t(:tag_list) %><br />
+        <%= f.text_field :tag_list, :class => 'fullwidth title' %>
+        <%= f.error_message_on :tag_list %>
+      <% end %>
+  </div>
 </div>

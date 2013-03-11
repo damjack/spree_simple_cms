@@ -3,7 +3,7 @@ module Spree
     before_filter :load_obj
     
     def show
-      @post = Spree::Blog.find(params[:id])
+      @post = Spree::Post.find_by_permalink!(params[:id])
     end
     
     def load_obj
