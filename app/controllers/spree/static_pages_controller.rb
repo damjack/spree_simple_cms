@@ -6,7 +6,7 @@ module Spree
     end
     
     def show
-      @page = Spree::StaticPage.find(params[:id])
+      @page = Spree::StaticPage.find_by_permalink!(params[:id])
     end
     
     def create_mail
