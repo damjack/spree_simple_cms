@@ -19,6 +19,27 @@ Spree::Core::Engine.routes.draw do
       get :published, :on => :member
       get :unpublished, :on => :member
     end
+    
+    resources :uploads do
+      post :update_positions, :on => :collection
+    end
+    
+    resources :taxonomy_posts do
+    	collection do
+    		post :update_positions
+    	end
+      member do
+        get :get_children
+      end
+
+      resources :taxon_posts
+    end
+
+    resources :taxon_posts, :only => [] do
+      collection do
+        get :search
+      end
+    end
   end
   
   match '/contacts', :to => 'static_pages#contacts', :as => :contacts
@@ -28,4 +49,6 @@ Spree::Core::Engine.routes.draw do
   match '/blog', :to => 'posts#index', :as => :blog
   match '/news/:id', :to => 'posts#show', :as => :post
   
+  # route globbing for pretty nested taxon and product paths
+  match '/tp/*id', :to => 'taxon_posts#show', :as => :nested_taxon_posts
 end

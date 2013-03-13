@@ -1,0 +1,95 @@
+<div data-hook="admin_post_form_fields">
+
+	<div class="left eight columns alpha" data-hook="admin_post_form_left">    
+		<%= f.field_container :title do %>
+			<%= f.label :title, raw(t(:title) + content_tag(:span, ' *', :class => 'required')) %>
+			<%= f.text_field :title, :class => 'fullwidth title' %>
+			<%= f.error_message_on :title %>
+		<% end %>
+
+		<%= f.field_container :permalink do %>
+			<%= f.label :permalink, raw(t(:permalink) + content_tag(:span, ' *',  :class => "required")) %>
+			<%= f.text_field :permalink, :class => 'fullwidth title' %>
+			<%= f.error_message_on :permalink %>
+		<% end %>
+
+		<%= f.field_container :body do %>
+			<%= f.label :body, t(:body) %>
+			<%= f.text_area :body, {:rows => 20, :class => 'fullwidth'} %>
+			<%= f.error_message_on :body %>
+		<% end %>
+	</div>
+
+	<div class="right four columns omega" data-hook="admin_post_form_right">
+		<%= f.field_container :published_at do %>
+			<%= f.label :published_at, t(:published_at) %>
+			<%= f.error_message_on :published_at %>
+			<%= f.text_field :published_at, :value => datepicker_field_value(@post.published_at), :class => 'datepicker' %>
+		<% end %>
+
+		<div class="clear"></div>
+
+		<%= f.field_container :from do %>
+			<%= f.label :from, t(:from) %>
+			<%= f.error_message_on :from %>
+			<%= f.text_field :from, :value => datepicker_field_value(@post.from), :class => 'datepicker' %>
+		<% end %>
+
+		<%= f.field_container :to do %>
+			<%= f.label :to, t(:to) %>
+			<%= f.error_message_on :to %>
+			<%= f.text_field :to, :value => datepicker_field_value(@post.to), :class => 'datepicker' %>
+		<% end %>
+
+		<div class="clear"></div>
+
+		<%= f.field_container :publication_date_from do %>
+			<%= f.label :publication_date_from, t(:publication_date_from) %>
+			<%= f.error_message_on :publication_date_from %>
+			<%= f.text_field :publication_date_from, :value => datepicker_field_value(@post.publication_date_from), :class => 'datepicker' %>
+		<% end %>
+
+		<%= f.field_container :publication_date_to do %>
+			<%= f.label :publication_date_to, t(:publication_date_to) %>
+			<%= f.error_message_on :publication_date_to %>
+			<%= f.text_field :publication_date_to, :value => datepicker_field_value(@post.publication_date_to), :class => 'datepicker' %>
+		<% end %>
+
+		<%= f.field_container :product do %>
+			<%= f.label :product_ids, t(:product) %>
+			<%= f.collection_select(:product_ids, @products, :id, :name, { :include_blank => 'None' }, { :class => 'select2' }) %>
+			<%= f.error_message_on :product %>
+		<% end %>
+	</div>
+
+	<div class="twelve columns alpha omega">
+		<%= f.field_container :taxons do %>
+			<%= f.label :taxon_ids, t(:taxons) %><br />
+			<%= f.hidden_field :taxon_ids, :value => @post.taxon_ids.join(',') %>
+		<% end %>
+		
+		<%= f.field_container :tag_list do %>
+			<%= f.label :tag_list, t(:tag_list) %><br />
+			<%= f.text_field :tag_list %>
+		<% end %>
+	</div>
+
+	<!-- <h2><%= t(:metadata) %></h2> -->
+	<div data-hook="admin_post_form_meta" class="alpha omega twelve columns">
+		<%= f.field_container :meta_keywords do %>
+			<%= f.label :meta_keywords, t(:meta_keywords) %>
+			<%= f.text_field :meta_keywords, :class => 'fullwidth' %>
+		<% end %>
+
+		<%= f.field_container :meta_description do %>
+			<%= f.label :meta_description, t(:meta_description) %>
+			<%= f.text_field :meta_description, :class => 'fullwidth' %>
+		<% end %>
+	</div>
+
+	<div class="clear"></div>
+
+	<div data-hook="admin_post_form_additional_fields"></div>
+
+	<div class="clear"></div>
+</div>

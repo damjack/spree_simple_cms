@@ -1,0 +1,16 @@
+<% content_for :page_actions do %>
+  <li><%= button_link_to t(:back_to_posts_list), admin_posts_url, :icon => 'icon-arrow-left' %></li>
+  <li id="new_post_link">
+    <%= button_link_to t(:new_post), new_object_url, { :remote => true, :icon => 'icon-plus', :id => 'admin_new_post' } %>
+  </li>
+<% end %>
+
+<%= render :partial => 'spree/admin/shared/post_tabs', :locals => { :current => 'Post Details' } %>
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @post } %>
+
+<%= form_for [:admin, @post], :method => :put, :html => { :multipart => true } do |f| %>
+  <fieldset class="no-border-top">
+    <%= render :partial => 'form', :locals => { :f => f } %>
+    <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

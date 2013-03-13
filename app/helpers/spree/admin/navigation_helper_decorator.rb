@@ -29,7 +29,7 @@ Spree::Admin::NavigationHelper.module_eval do
     
     selected = options[:childs].include?(controller.controller_name)
     
-    link_down = link_to("<i class='icon-chevron-down'></i> #{t(options[:label].to_sym, :default => options[:label]).titleize}".html_safe, "javascript: void(0)", :class => "dropdown-toggle")
+    link_down = link_to("<i class='icon-caret-down'></i> #{t(options[:label].to_sym, :default => options[:label]).titleize}".html_safe, "javascript: void(0)", :class => "dropdown-toggle")
     down = content_tag(:div, child.html_safe, :class => "dropdown")
     content_tag('li', link_down + down, :class => "#{options[:class]} tab-with-icon #{'selected' if selected}")
   end

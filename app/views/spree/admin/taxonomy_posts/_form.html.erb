@@ -1,0 +1,7 @@
+<div data-hook="admin_inside_taxonomy_post_form" class="field align-center">
+  <%= f.field_container :name do %>
+    <%= f.label :name, t(:name) %> <span class="required">*</span><br />
+    <%= error_message_on :taxonomy_post, :name, :class => 'fullwidth title' %>
+    <%= text_field :taxonomy_post, :name %>
+  <% end %>
+</div>

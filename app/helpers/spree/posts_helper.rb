@@ -10,7 +10,7 @@ module Spree
     end
 
     def tag_link(tag)
-      link_to tag.name,posts_path + "?tag=#{tag.name}"
+      link_to(tag.name, posts_path + "?tag=#{tag.name}")
     end
 
   end

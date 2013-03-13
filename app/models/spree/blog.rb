@@ -3,7 +3,7 @@ module Spree
     has_many :images, :as => :viewable, :order => :position, :dependent => :destroy
     has_many :uploads, :as => :uploadable
     
-    attr_accessible :title, :permalink, :tag_title, :meta_description, :meta_keywords, :body, :link,
+    attr_accessible :title, :permalink, :meta_description, :meta_keywords, :body, :link,
                     :position, :in_nav_menu, :published_at, :from, :to, :publication_date_from,
                     :publication_date_to, :tag_list
     

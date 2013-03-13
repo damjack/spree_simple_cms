@@ -5,7 +5,7 @@ module Spree
     has_many :images, :as => :viewable, :order => :position, :dependent => :destroy
     has_many :uploads, :as => :uploadable
     
-    attr_accessible :title, :permalink, :tag_title, :meta_description, :meta_keywords, :body, :link,
+    attr_accessible :title, :permalink, :meta_description, :meta_keywords, :body, :link,
                     :position, :in_nav_menu, :published_at, :taxon_ids, :product_ids
     
     accepts_nested_attributes_for :uploads, :allow_destroy => true

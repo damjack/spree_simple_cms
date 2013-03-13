@@ -4,8 +4,7 @@ module Spree
     has_and_belongs_to_many :taxons, :join_table => 'spree_posts_taxons', :dependent => :destroy
     acts_as_commentable
     
-    has_and_belongs_to_many :post_categories, :join_table => "spree_post_categories_posts", :class_name => "Spree::PostCategory"
-    alias_attribute :categories, :post_categories
+    has_and_belongs_to_many :taxon_posts, :join_table => "spree_posts_taxon_posts", :class_name => "Spree::TaxonPost"
     
     attr_accessible :taxon_ids, :product_ids
     
