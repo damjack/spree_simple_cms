@@ -1,4 +1,6 @@
 //= require select2
+//= require admin/taxonomy_post
+
 jQuery(function($) {
 
 	$("#static_page_taxon_ids").on({
@@ -21,7 +23,7 @@ jQuery(function($) {
 		}
 	});
 
-	$('.dropdown-toggle').on("click", function(){
+	$('.dropdown-toggle ,.dropdown').on("hover", function(){
 		$(this).parent('.dropdown-menu').children('div.dropdown').toggle();
 	});
 });

@@ -8,7 +8,7 @@
 
     <%= f.field_container :permalink_part do %>
       <%= f.label :permalink_part, t(:permalink) %><span class="required">*</span><br />
-      <%= @taxon.permalink.split("/")[0...-1].join("/") + "/" %>
+      <%= @taxon_post.permalink.split("/")[0...-1].join("/") + "/" %>
       <%= text_field_tag :permalink_part, @permalink_part %>
     <% end %>
 

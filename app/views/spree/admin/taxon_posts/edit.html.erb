@@ -1,19 +1,19 @@
 <%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
-  <%= t(:taxon_edit) %>
+  <%= t(:taxon_post_edit) %>
 <% end %>
 
 <% content_for :page_actions do %>
   <li>
-    <%= button_link_to t(:back_to_taxonomies_list), spree.admin_taxonomies_path, :icon => 'icon-arrow-left' %>
+    <%= button_link_to t(:back_to_taxonomy_posts_list), spree.admin_taxonomy_posts_path, :icon => 'icon-arrow-left' %>
   </li>
 <% end %>
 
-<%= form_for [:admin, @taxonomy, @taxon], :method => :put, :html => { :multipart => true } do |f| %>
+<%= form_for [:admin, @taxonomy_post, @taxon_post], :method => :put, :html => { :multipart => true } do |f| %>
   <%= render :partial => 'form', :locals => { :f => f } %>
 
   <div class="form-buttons" data-hook="buttons">
-    <%= button t(:update), 'icon-refresh' %> <%= t(:or) %> <%= button_link_to t(:cancel), edit_admin_taxonomy_url(@taxonomy), :icon => "icon-remove" %>
+    <%= button t(:update), 'icon-refresh' %> <%= t(:or) %> <%= button_link_to t(:cancel), edit_admin_taxonomy_post_url(@taxonomy_post), :icon => "icon-remove" %>
   </div>
 <% end %>

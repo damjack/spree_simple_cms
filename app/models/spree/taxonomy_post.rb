@@ -17,7 +17,7 @@ module Spree
         if root
           root.update_column(:name, name)
         else
-          self.root = TaxonPost.create!({ :taxonomy_id => id, :name => name }, :without_protection => true)
+          self.root = TaxonPost.create!({ :taxonomy_post_id => id, :name => name }, :without_protection => true)
         end
       end
 

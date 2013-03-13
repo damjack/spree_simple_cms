@@ -1,0 +1,39 @@
+#taxonomy_post_tree {
+  > ul, .jstree-icon {
+    background-image: none;
+  }
+  
+  .jstree-icon {
+    @extend [class^="icon-"]:before;
+  }
+
+  .jstree-open > .jstree-icon {    
+    @extend .icon-caret-down;
+  }
+  .jstree-closed > .jstree-icon {    
+    @extend .icon-caret-right;
+  }
+
+  li {
+    background-image: none;
+
+    a {
+      background-color: #F3F8FC;
+	  border: 1px solid #CEE1F4;
+      color: #6788A2;
+      font-weight: 600;
+      text-shadow: none;
+      width: 90%;
+      height: auto;
+      line-height: inherit;
+      text-transform: uppercase;
+      padding: 5px 0 5px 10px;
+      margin-bottom: 10px;
+
+      .jstree-icon {
+        padding-left: 0px;
+        @extend .icon-move;   
+      }
+    }
+  }
+}
