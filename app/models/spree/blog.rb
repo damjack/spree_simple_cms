@@ -16,18 +16,12 @@ module Spree
     
     accepts_nested_attributes_for :uploads, :allow_destroy => true
     
-    before_save :set_published_at, :if => Proc.new {|model| model.published_at.nil? }
-    
     def to_param
       permalink.present? ? permalink : (permalink_was || title.to_s.to_url)
     end
     
     def published?
       !self.published_at.blank?
-    end
-    
-    def set_published_at
-      self.published_at = Time.now
     end
     
     def check_date
