@@ -15,7 +15,7 @@ class CreatePages < ActiveRecord::Migration
       t.integer :image_width, :image_height
       
       t.integer :position
-      t.boolean :in_nav_menu, :default => 0
+      t.boolean :in_nav_menu, :default => false
       t.datetime :published_at
       
       t.references :product
