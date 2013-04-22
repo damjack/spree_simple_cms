@@ -20,6 +20,7 @@ Spree::Core::Engine.routes.draw do
       end
       member do
         get :published
+        get :unpublished
         get :in_nav_menu
       end
     end

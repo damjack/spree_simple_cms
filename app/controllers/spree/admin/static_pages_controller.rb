@@ -26,13 +26,16 @@ module Spree
       end
       
       def published
-        sp = StaticPage.find(params[:id])
-
-        if sp.update_attribute(:published_at, Time.now)
-          flash[:notice] = t("info_published_static_page")
-        else
-          flash[:error] = t("error_published_static_page")
-        end
+        @static_page = StaticPage.where(:permalink => params[:id]).first!
+        @static_page.update_attribute(:published_at, Time.now)
+        flash[:notice] = t("info_published_static_page")
+        redirect_to spree.admin_static_pages_path
+      end
+      
+      def unpublished
+        @static_page = StaticPage.where(:permalink => params[:id]).first!
+        @static_page.update_attribute(:published_at, nil)
+        flash[:notice] = t("info_unpublished_static_page")
         redirect_to spree.admin_static_pages_path
       end
 
