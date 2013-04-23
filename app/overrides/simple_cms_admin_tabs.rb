@@ -1,7 +1,7 @@
 Deface::Override.new(:virtual_path => "spree/layouts/admin",
                      :name => "pages_tab",
                      :insert_bottom => "[data-hook='admin_tabs'], #admin_tabs[data-hook]",
-                     :text => "<%= tab(t('simple_cms.pages'), :url => spree.admin_static_pages_path) %>")
+                     :text => "<%= tab(:static_pages, :url => spree.admin_static_pages_path) %>")
 
 Deface::Override.new(:virtual_path => "spree/layouts/admin",
                      :name => "posts_tab",

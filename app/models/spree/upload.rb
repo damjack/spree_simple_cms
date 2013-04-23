@@ -3,12 +3,8 @@ module Spree
     belongs_to :uploadable, :polymorphic => true
 
     validate :no_image_errors
-    has_attached_file :attachment, :styles => {
-          :thumbnail => "100x100#",
-          :small=> "200x200#",
-          :medium => "350x350#",
-          :big => "450x450#",
-          :custom => Proc.new { |instance| "#{instance.attachment_width}x#{instance.attachment_height}#" }}
+    has_attached_file :attachment,
+                      :styles => { :thumbnail => "100x100#", :small=> "200x200#", :medium => "350x350#", :large => "450x450#" }
 
     scope :by_position, lambda { where(:position => "position ASC") }
 

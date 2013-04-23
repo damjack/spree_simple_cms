@@ -33,3 +33,39 @@
 
 <%= paginate @posts %>
 
+<% content_for :sidebar do %>
+  <div class="box" data-hook="admin_posts_sidebar">
+    <%= search_form_for [:admin, @search] do |f| %>
+      <div class="box">
+        <h3><%= t(:search) %></h3>
+		<%= label_tag nil, t(:date_range) %><br />
+	      <div class="date-range-filter">
+	        <div class="left sub-field">
+	          <%= f.text_field :published_at_gt, :class => 'datepicker' %><br />
+	          <%= label_tag nil, t(:start), :class => 'sub' %>
+	        </div>
+	        <div class="right sub-field">
+	          <%= f.text_field :published_at_lt, :class => 'datepicker' %><br />
+	          <%= label_tag nil, t(:stop), :class => 'sub' %>
+	        </div>
+	      </div>
+        <%- locals = {:f => f} %>
+        <div data-hook="admin_posts_index_search">
+          <p>
+            <%= f.label :name_cont, t(:name) %><br />
+            <%= f.text_field :name_cont, :size => 15 %>
+          </p>
+          <p>
+            <%= f.label :content_cont, t(:content) %><br />
+            <%= f.text_field :content_cont, :size => 15 %>
+          </p>
+        </div>
+
+        <div data-hook="admin_posts_index_search_buttons">
+          <p><%= button t(:search) %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
