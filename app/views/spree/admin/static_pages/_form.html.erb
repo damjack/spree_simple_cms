@@ -1,10 +1,10 @@
 <div data-hook="admin_page_form_fields">
 	<div class="clearfix">
 		<div class="left" data-hook="admin_product_form_left">
-			<%= f.field_container :name do %>
-				<%= f.label :name, t(:name) %> <span class="required">*</span><br />
-				<%= f.text_field :name, :class => 'fullwidth title' %>
-				%= f.error_message_on :name %>
+			<%= f.field_container :title do %>
+				<%= f.label :title, t(:title) %> <span class="required">*</span><br />
+				<%= f.text_field :title, :class => 'fullwidth title' %>
+				<%= f.error_message_on :title %>
 			<% end %>
 
 			<%= f.field_container :body do %>
