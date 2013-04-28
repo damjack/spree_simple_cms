@@ -4,7 +4,7 @@
 </div>
 
 <div data-hook="admin_post_new_form">
-  <%= semantic_form_for([:admin, @post], :html => { :enctype => "multipart/form-data" }) do |f| %>
+  <%= form_for([:admin, @post], :html => { :multipart => true }) do |f| %>
     <%= render :partial => 'form', :locals => { :f => f } %>
 
     <div data-hook="admin_post_new_form_buttons">

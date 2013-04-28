@@ -2,18 +2,10 @@ module Spree
   module Admin
     class PostsController < ResourceController
       def index
-        params[:q] ||= {}
-        params[:q][:meta_sort] ||= "name.asc"
-        
-        if !params[:q][:published_at_gt].blank?
-          params[:q][:published_at_gt] = Time.zone.parse(params[:q][:published_at_gt]).beginning_of_day rescue ""
+        respond_with(@collection) do |format|
+          format.html
+          format.json { render :json => json_data }
         end
-
-        if !params[:q][:published_at_lt].blank?
-          params[:q][:published_at_lt] = Time.zone.parse(params[:q][:published_at_lt]).end_of_day rescue ""
-        end
-        
-        @posts = @search.result.published.page(params[:name]).per(Spree::Config[:admin_products_per_page])
       end
 
       def show
@@ -80,6 +72,14 @@ module Spree
         params[:q] ||= {}
 
         params[:q][:s] ||= "name asc"
+        
+        if !params[:q][:published_at_gt].blank?
+          params[:q][:published_at_gt] = Time.zone.parse(params[:q][:published_at_gt]).beginning_of_day rescue ""
+        end
+
+        if !params[:q][:published_at_lt].blank?
+          params[:q][:published_at_lt] = Time.zone.parse(params[:q][:published_at_lt]).end_of_day rescue ""
+        end
 
         @search = super.ransack(params[:q])
         @collection = @search.result.page(params[:page]).per(12)

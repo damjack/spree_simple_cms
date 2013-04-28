@@ -6,6 +6,11 @@ module Spree
 
     respond_to :html
     
+    def index
+      @posts = Spree::Post.published.order('published_at desc').page(params[:page]).per(20)
+      respond_with(@posts)
+    end
+    
     def show
       return unless @post
     end
@@ -17,16 +22,6 @@ module Spree
     
     def load_post
       @post = Spree::Post.find_by_permalink!(params[:id])
-    end
-    
-    before_filter :load_obj
-    
-    def show
-      @post = Spree::Post.find_by_permalink(params[:id])
-    end
-    
-    def load_obj
-      @posts = Spree::Post.published.order('published_at desc')
     end
   end
 end

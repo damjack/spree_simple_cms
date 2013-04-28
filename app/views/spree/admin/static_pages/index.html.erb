@@ -14,7 +14,6 @@
 		<tr data-hook="admin_pages_index_headers">
 			<th><%= sort_link @search,:title, t(:page), {}, {:title => t(:title)} %></th>
 			<th><%= t(:position) %></th>
-			<th><%= t(:in_nav_menu) %></th>
 			<th><%= t(:published_at) %></th>
 			<th data-hook="admin_static_pages_index_header_actions"></th>
 		</tr>
@@ -27,7 +26,6 @@
 				<%= sp.name %>
 			</td>
 			<td><%= sp.position %></td>
-			<td><%= sp.in_nav_menu %></td>
 			<td><%= l(sp.published_at, :format => :short) rescue "" %></td>
 			<td class="actions" data-hook="admin_pages_index_row_actions">
 				<%= link_to_edit sp, :class => 'edit' %> &nbsp;

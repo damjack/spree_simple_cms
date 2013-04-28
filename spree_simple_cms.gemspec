@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_simple_cms'
-  s.version     = '1.1.2'
+  s.version     = '1.1.3'
   s.summary     = 'Extension to create a simple CMS and Blog for you Spree Shop'
   s.required_ruby_version = '>= 1.8.7'
 
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '>= 1.1.3'
+  s.add_dependency 'aws-sdk'
   s.add_dependency 'paperclip'
   s.add_dependency 'acts-as-taggable-on'
   s.add_dependency 'acts_as_commentable_with_threading'
