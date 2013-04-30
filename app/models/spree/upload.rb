@@ -1,6 +1,7 @@
 module Spree
   class Upload < ActiveRecord::Base
     belongs_to :uploadable, :polymorphic => true
+    acts_as_list
     
     attr_accessible :position, :title, :presentation, :attachment, :permalink
     

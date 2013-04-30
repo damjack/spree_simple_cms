@@ -63,9 +63,9 @@
 	</div>
 
 	<div class="twelve columns alpha omega">
-		<%= f.field_container :taxons do %>
-			<%= f.label :taxon_ids, t(:taxons) %><br />
-			<%= f.hidden_field :taxon_ids, :value => @post.taxon_ids.join(',') %>
+		<%= f.field_container :taxon_posts do %>
+			<%= f.label :taxon_post_ids, t(:taxon_posts) %><br />
+			<%= f.hidden_field :taxon_post_ids, :value => @post.taxon_post_ids.join(',') %>
 		<% end %>
 		
 		<%= f.field_container :tag_list do %>

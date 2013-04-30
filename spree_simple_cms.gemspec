@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   
   s.add_dependency 'spree_core', '>= 1.3.0'
   s.add_dependency 'paperclip'
+  s.add_dependency 'aws-sdk'
   s.add_dependency 'acts-as-taggable-on'
   s.add_dependency 'acts_as_commentable_with_threading'
 end
