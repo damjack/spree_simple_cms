@@ -4,14 +4,19 @@
   }
   
   .jstree-icon {
-    @extend [class^="icon-"]:before;
+    -webkit-font-smoothing: antialiased;
+	font-family: FontAwesome;
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+	text-decoration: inherit;
   }
 
   .jstree-open > .jstree-icon {    
-    @extend .icon-caret-down;
+    content: "\f0d7";
   }
   .jstree-closed > .jstree-icon {    
-    @extend .icon-caret-right;
+    content: "\f0da";
   }
 
   li {
@@ -32,7 +37,7 @@
 
       .jstree-icon {
         padding-left: 0px;
-        @extend .icon-move;   
+        content: "\f047";
       }
     }
   }
