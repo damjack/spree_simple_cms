@@ -7,6 +7,7 @@ Spree::AppConfiguration.class_eval do
   preference :store_twitter_id, :string, :default => 'twitter_id'
   preference :store_facebook_id, :string, :default => 'facebook_id'
   preference :store_pinterest_id, :string, :default => 'pinterest_id'
+  preference :store_youtube_id, :string, :default => 'youtube_id'
   preference :store_skype, :string, :default => 'ecommerce_skype'
   preference :store_location, :string, :default => 'google_maps_location'
   preference :store_description, :text, :default => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, sem id vulputate auctor, dui lectus lacinia ipsum, placerat euismod felis tellus a nulla. Nunc fermentum tincidunt dui, ac iaculis quam elementum et. Mauris sit amet vehicula tortor. Maecenas euismod fringilla venenatis. In accumsan ultricies odio at venenatis. Duis aliquam euismod libero, nec eleifend massa fermentum iaculis. Donec imperdiet egestas ligula pretium aliquam.'

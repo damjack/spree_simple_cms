@@ -4,14 +4,14 @@ module Spree
       def show
         @preferences = ['store_name', 'store_default_email', 'store_address',
                         'store_phone_number', 'store_fax_number', 'store_twitter_id',
-                        'store_facebook_id', 'store_pinterest_id', 'store_skype', 'store_location',
+                        'store_facebook_id', 'store_pinterest_id', 'store_youtube_id', 'store_skype', 'store_location',
                         'store_description', 'store_welcome_title', 'store_welcome_description']
       end
 
       def edit
         @preferences = [:store_name, :store_default_email, :store_address,
                         :store_phone_number, :store_fax_number, :store_twitter_id,
-                        :store_facebook_id, :store_pinterest_id, :store_skype, :store_location,
+                        :store_facebook_id, :store_pinterest_id, :store_youtube_id, :store_skype, :store_location,
                         :store_description, :store_welcome_title, :store_welcome_description]
       end
 
