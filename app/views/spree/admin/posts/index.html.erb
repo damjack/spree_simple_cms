@@ -34,7 +34,7 @@
 <%= paginate @collection %>
 
 <% content_for :sidebar do %>
-  <div data-hook="admin_posts_sidebar">
+  <div class="box" data-hook="admin_posts_sidebar">
     <%= search_form_for [:admin, @search] do |f| %>
       <div class="box">
         <h3><%= t(:search) %></h3>
@@ -62,9 +62,7 @@
         </div>
 
         <div data-hook="admin_posts_index_search_buttons">
-          <p class="form-buttons">
-            <%= button t(:search) %>
-          </p>
+          <p><%= button t(:search) %></p>
         </div>
       </div>
     <% end %>

@@ -1,16 +1,57 @@
-<div data-hook="admin_page_form_fields">
-	<%= f.inputs do %>
-		<%= f.input :name, :label => t("simple_cms.page.name") %>
-		<%= f.input :slug, :label => t("simple_cms.page.slug") %>
-		<%= f.input :tag_title, :label => t("simple_cms.page.tag_title") %>
-		<%= f.input :meta_description, :label => t("simple_cms.page.meta_description") %>
-		<%= f.input :meta_keywords, :label => t("simple_cms.page.meta_keywords") %>
-		<%= f.cktext_area :content, :input_html => { :value => @static_page.content }, :label => t("simple_cms.page.content") %>
-		<%= f.input :published_at, :as => :string, :input_html => { :class => 'datepicker'}, :label => t("simple_cms.page.published_at") %>
+<div data-hook="admin_static_page_form_fields">
+  <div class="clearfix">
+    <div class="left" style="width: 69%;" data-hook="admin_static_page_form_left">
+      <%= f.field_container :name do %>
+        <%= f.label :name, t(:name) %> <span class="required">*</span><br />
+        <%= f.text_field :name, :class => 'fullwidth title' %>
+        <%= f.error_message_on :name %>
+      <% end %>
+
+      <%= f.field_container :permalink do %>
+        <%= f.label :permalink, t(:permalink) %> <span class="required">*</span><br />
+        <%= f.text_field :permalink, :class => 'fullwidth title' %>
+        <%= f.error_message_on :permalink %>
+      <% end %>
+
+      <%= f.field_container :content do %>
+        <%= f.label :content, t(:content) %><br />
+        <%= f.cktext_area :content, {:cols => 180, :rows => 10, :class => 'fullwidth'} %>
+        <%= f.error_message_on :content %>
+      <% end %>
+    </div>
+    <div class="right" style="width: 30%;" data-hook="admin_static_page_form_right">
+		<h2><%= t(:metadata) %></h2>
 		
-		<%= f.input :image_width, :label => t("simple_cms.page.image_width") %>
-		<%= f.input :image_height, :label => t("simple_cms.page.image_height") %>
+		<%= f.field_container :tag_title do %>
+	      <%= f.label :tag_title, t(:tag_title) %><br />
+	      <%= f.text_field :tag_title, :class => 'fullwidth' %>
+	    <% end %>
 		
-		<%= f.input :image, :as => :file, :label => t("simple_cms.page.image.one").capitalize, :hint => f.object.image.blank? ? f.template.content_tag(:span, t("simple_cms.page.no_image")) : f.template.image_tag(f.object.image.url(:thumbnail)) %>
-	<% end %>
+        <%= f.field_container :meta_keywords do %>
+	      <%= f.label :meta_keywords, t(:meta_keywords) %><br />
+	      <%= f.text_field :meta_keywords, :class => 'fullwidth' %>
+	    <% end %>
+
+	    <%= f.field_container :meta_description do %>
+	      <%= f.label :meta_description, t(:meta_description) %><br />
+	      <%= f.text_field :meta_description, :class => 'fullwidth' %>
+	    <% end %>
+
+      <%= f.field_container :published_at do %>
+        <%= f.label :published_at, t(:published_at) %><br />
+        <%= f.error_message_on :published_at %>
+        <%= f.text_field :published_at, :class => 'datepicker' %>
+      <% end %>
+	
+		<div data-hook="thumbnail">
+	      <p><%= t(:thumbnail) %>:</p>
+	      <p><%= link_to image_tag(@static_page.image.url(:mini)), @static_page.image.url(:medium) %></p>
+	    </div>
+		<%= f.field_container :image do %>
+	        <%= f.label :image, t(:image) %><br />
+	        <%= f.file_field :image %>
+	        <%= f.error_message_on :image %>
+	      <% end %>
+    </div>
+  </div>
 </div>
