@@ -36,16 +36,6 @@
         <%= f.error_message_on :published_at %>
         <%= f.text_field :published_at, :class => 'datepicker' %>
       <% end %>
-	
-		<div data-hook="thumbnail">
-	      <p><%= t(:thumbnail) %>:</p>
-	      <p><%= link_to image_tag(@static_page.image.url(:mini)), @static_page.image.url(:medium) %></p>
-	    </div>
-		<%= f.field_container :image do %>
-	        <%= f.label :image, t(:image) %><br />
-	        <%= f.file_field :image %>
-	        <%= f.error_message_on :image %>
-	      <% end %>
     </div>
   </div>
 </div>

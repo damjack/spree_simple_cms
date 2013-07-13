@@ -32,12 +32,6 @@
 				<%= f.error_message_on :meta_description %>
 			<% end %>
 
-			<%= f.field_container :attachment do %>
-				<%= f.label :attachment, t(:attachment) %><br />
-				<%= f.file_field :attachment %>
-				<%= f.error_message_on :attachment %>
-			<% end %>
-
 			<p>
 				<%= f.label :published_at, t(:published_at) %><br />
 				<%= f.error_message_on :published_at %>
