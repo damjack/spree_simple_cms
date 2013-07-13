@@ -4,38 +4,38 @@
 <fieldset data-hook="new_static_page">
 
 	<%= f.field_container :name do %>
-	<%= f.label :name, t(:name) %> <span class="required">*</span><br />
-	<%= f.text_field :name, :class => 'fullwidth title' %>
-	<%= f.error_message_on :name %>
+		<%= f.label :name, t(:name) %> <span class="required">*</span><br />
+		<%= f.text_field :name, :class => 'fullwidth title' %>
+		<%= f.error_message_on :name %>
 	<% end %>
 
 	<div class="clearfix" data-hook="new_static_page_attrs">
 		<div class="left" style="width: 69%;">
 			<%= f.field_container :content do %>
-			<%= f.label :content, t(:content) %><br />
-			<%= f.cktext_area :content, :rows => 16, :class => "fullwidth" %>
-			<%= f.error_message_on :content %>
+				<%= f.label :content, t(:content) %><br />
+				<%= f.cktext_area :content, :rows => 16, :class => "fullwidth" %>
+				<%= f.error_message_on :content %>
 			<% end %>
 
 		</div>
 		<div class="right" style="width: 30%;">
-
-			<%= f.field_container :tag_title do %>
-			<%= f.label :tag_title, t(:tag_title) %><br />
-			<%= f.text_field :tag_title %>
-			<%= f.error_message_on :tag_title %>
+			
+			<%= f.field_container :meta_keywords do %>
+				<%= f.label :meta_keywords, t(:meta_keywords) %><br />
+				<%= f.text_field :meta_keywords %>
+				<%= f.error_message_on :meta_keywords %>
 			<% end %>
-
+			
 			<%= f.field_container :meta_description do %>
-			<%= f.label :meta_description, t(:meta_description) %><br />
-			<%= f.text_field :meta_description %>
-			<%= f.error_message_on :meta_description %>
+				<%= f.label :meta_description, t(:meta_description) %><br />
+				<%= f.text_field :meta_description %>
+				<%= f.error_message_on :meta_description %>
 			<% end %>
 
-			<%= f.field_container :image do %>
-			<%= f.label :image, t(:image) %><br />
-			<%= f.file_field :image %>
-			<%= f.error_message_on :image %>
+			<%= f.field_container :attachment do %>
+				<%= f.label :attachment, t(:attachment) %><br />
+				<%= f.file_field :attachment %>
+				<%= f.error_message_on :attachment %>
 			<% end %>
 
 			<p>

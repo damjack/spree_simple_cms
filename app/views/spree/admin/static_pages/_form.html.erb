@@ -21,12 +21,6 @@
     </div>
     <div class="right" style="width: 30%;" data-hook="admin_static_page_form_right">
 		<h2><%= t(:metadata) %></h2>
-		
-		<%= f.field_container :tag_title do %>
-	      <%= f.label :tag_title, t(:tag_title) %><br />
-	      <%= f.text_field :tag_title, :class => 'fullwidth' %>
-	    <% end %>
-		
         <%= f.field_container :meta_keywords do %>
 	      <%= f.label :meta_keywords, t(:meta_keywords) %><br />
 	      <%= f.text_field :meta_keywords, :class => 'fullwidth' %>
