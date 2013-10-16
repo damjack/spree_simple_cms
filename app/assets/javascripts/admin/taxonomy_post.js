@@ -1,10 +1,5 @@
-var handle_ajax_error = function(XMLHttpRequest, textStatus, errorThrown){
-  $.jstree.rollback(last_rollback);
-  $("#ajax_error").show().html("<strong>" + server_error + "</strong><br />" + taxonomy_post_tree_error);
-};
-
 //var handle_move = function(li, target, droppped, tree, rb) {
-var handle_move = function(e, data) {
+var handle_move_post = function(e, data) {
   last_rollback = data.rlbk;
   var position = data.rslt.cp;
   var node = data.rslt.o;
@@ -21,7 +16,7 @@ var handle_move = function(e, data) {
   return true
 };
 
-var handle_create = function(e, data) {
+var handle_create_post = function(e, data) {
   last_rollback = data.rlbk;
   var node = data.rslt.obj;
   var name = data.rslt.name;
@@ -41,7 +36,7 @@ var handle_create = function(e, data) {
 
 };
 
-var handle_rename = function(e, data) {
+var handle_rename_post = function(e, data) {
   last_rollback = data.rlbk;
   var node = data.rslt.obj;
   var name = data.rslt.new_name;
@@ -55,7 +50,7 @@ var handle_rename = function(e, data) {
   });
  };
 
-var handle_delete = function(e, data){
+var handle_delete_post = function(e, data){
   last_rollback = data.rlbk;
   var node = data.rslt.obj;
 
@@ -185,10 +180,10 @@ $(document).ready(function(){
     }
 
     $("#taxonomy_post_tree").jstree(conf)
-      .bind("move_node.jstree", handle_move)
-      .bind("remove.jstree", handle_delete)
-      .bind("create.jstree", handle_create)
-      .bind("rename.jstree", handle_rename);
+      .bind("move_node.jstree", handle_move_post)
+      .bind("remove.jstree", handle_delete_post)
+      .bind("create.jstree", handle_create_post)
+      .bind("rename.jstree", handle_rename_post);
 
     $("#taxonomy_post_tree a").on("dblclick", function (e) {
      $("#taxonomy_post_tree").jstree("rename", this)
