@@ -10,7 +10,7 @@ class RefactorPostCategory < ActiveRecord::Migration
     rename_table :spree_post_category, :spree_taxon_posts
     
     rename_column :spree_taxon_posts, :title, :name
-    add_index :spree_taxon_posts, :permalink, :unique => true
+    # add_index :spree_taxon_posts, :permalink, :unique => true
     rename_column :spree_taxon_posts, :presentation, :description
     add_column :spree_taxon_posts, :parent_id, :integer, :after => :id
     add_column :spree_taxon_posts, :taxonomy_post_id, :integer, :after => :permalink

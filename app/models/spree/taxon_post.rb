@@ -7,9 +7,6 @@ module Spree
     
     before_create :set_permalink
     
-    attr_accessible :name, :parent_id, :position, :icon, :description, :permalink, :taxonomy_id,
-                    :published_at, :meta_description, :meta_keywords
-    
     validates :name, :presence => true
 
     has_attached_file :icon,

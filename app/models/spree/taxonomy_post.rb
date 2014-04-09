@@ -2,8 +2,6 @@ module Spree
   class TaxonomyPost < ActiveRecord::Base
     validates :name, :presence => true
 
-    attr_accessible :name
-
     has_many :taxon_posts
     has_one :root, :conditions => { :parent_id => nil }, :class_name => "Spree::TaxonPost",
                    :dependent => :destroy

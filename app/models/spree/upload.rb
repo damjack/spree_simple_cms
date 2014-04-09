@@ -3,8 +3,6 @@ module Spree
     belongs_to :uploadable, :polymorphic => true
     acts_as_list
     
-    attr_accessible :position, :title, :presentation, :attachment, :permalink
-    
     make_permalink :order => :title
     
     has_attached_file :attachment,
