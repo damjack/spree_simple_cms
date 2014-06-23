@@ -1,6 +1,6 @@
 //var handle_move = function(li, target, droppped, tree, rb) {
 var handle_move_post = function(e, data) {
-  last_rollback = data.rlbk;
+  last_post_rollback = data.rlbk;
   var position = data.rslt.cp;
   var node = data.rslt.o;
   var new_parent = data.rslt.np;
@@ -17,7 +17,7 @@ var handle_move_post = function(e, data) {
 };
 
 var handle_create_post = function(e, data) {
-  last_rollback = data.rlbk;
+  last_post_rollback = data.rlbk;
   var node = data.rslt.obj;
   var name = data.rslt.name;
   var position = data.rslt.position;
@@ -37,7 +37,7 @@ var handle_create_post = function(e, data) {
 };
 
 var handle_rename_post = function(e, data) {
-  last_rollback = data.rlbk;
+  last_post_rollback = data.rlbk;
   var node = data.rslt.obj;
   var name = data.rslt.new_name;
 
@@ -51,7 +51,7 @@ var handle_rename_post = function(e, data) {
  };
 
 var handle_delete_post = function(e, data){
-  last_rollback = data.rlbk;
+  last_post_rollback = data.rlbk;
   var node = data.rslt.obj;
 
   jConfirm(Spree.translations.are_you_sure_delete, Spree.translations.confirm_delete, function(r) {
@@ -64,8 +64,8 @@ var handle_delete_post = function(e, data){
         error: handle_ajax_error
       });
     }else{
-      $.jstree.rollback(last_rollback);
-      last_rollback = null;
+      $.jstree.rollback(last_post_rollback);
+      last_post_rollback = null;
     }
   });
 
@@ -76,17 +76,17 @@ var taxonomy_post_id;
 $(document).ready(function(){
   if(taxonomy_post_id!=undefined){
 
-    base_url = $("#taxonomy_post_tree").data("url").split("?")[0] + "/" ;
-    child_url = base_url.replace("/taxon_posts", "/get_children.json");
+    base_post_url = $("#taxonomy_post_tree").data("url").split("?")[0] + "/" ;
+    child_post_url = babase_post_urlse_url.replace("/taxon_posts", "/get_children.json");
     
-    is_cut = false;
-    last_rollback = null;
+    is_post_cut = false;
+    last_post_rollback = null;
 
-    var conf = {
+    var post_conf = {
       json_data : {
-        "data" : initial,
+        "data" : initial_post,
         "ajax" : {
-          "url" : child_url,
+          "url" : child_post_url,
           "data" : function (n) {
             return { parent_id : n.attr ? n.attr("id") : 0 };
           }
@@ -111,7 +111,7 @@ $(document).ready(function(){
 
             if(node.attr("rel")=="root") return false; //can't drag root
 
-            if(new_parent.attr("id")=="taxonomy_tree" && position==0) return false; // can't drop before root
+            if(new_parent.attr("id")=="taxonomy_post_tree" && position==0) return false; // can't drop before root
 
             return true;
 
@@ -132,13 +132,13 @@ $(document).ready(function(){
                  "paste" : {
                    "separator_before" : true,
                    "label"            : "<i class='icon-paste'></i> " + Spree.translations.paste,
-                   "action"           : function (obj) { is_cut = false; this.paste(obj); },
-                   "_disabled"        : is_cut == false
+                   "action"           : function (obj) { is_post_cut = false; this.paste(obj); },
+                   "_disabled"        : is_post_cut == false
                 },
                 "edit" : {
                   "separator_before" : true,
                   "label"            : "<i class='icon-edit'></i> " + Spree.translations.edit,
-                  "action"           : function (obj) { window.location = base_url + obj.attr("id") + "/edit/"; }
+                  "action"           : function (obj) { window.location = base_post_url + obj.attr("id") + "/edit/"; }
                 }
               }
             } else {
@@ -158,17 +158,17 @@ $(document).ready(function(){
                 "cut" : {
                   "separator_before" : true,
                   "label"            : "<i class='icon-cut'></i> " + Spree.translations.cut,
-                  "action"           : function (obj) { is_cut = true; this.cut(obj); }
+                  "action"           : function (obj) { is_post_cut = true; this.cut(obj); }
                 },
                 "paste" : {
                   "label"            : "<i class='icon-paste'></i> " + Spree.translations.paste,
-                  "action"           : function (obj) { is_cut = false; this.paste(obj); },
-                  "_disabled"        : is_cut == false
+                  "action"           : function (obj) { is_post_cut = false; this.paste(obj); },
+                  "_disabled"        : is_post_cut == false
                 },
                 "edit" : {
                   "separator_before" : true,
                   "label"            : "<i class='icon-edit'></i> " + Spree.translations.edit,
-                  "action"           : function (obj) { window.location = base_url + obj.attr("id") + "/edit/"; }
+                  "action"           : function (obj) { window.location = base_post_url + obj.attr("id") + "/edit/"; }
                 }
                     }
             }
@@ -179,7 +179,7 @@ $(document).ready(function(){
       "plugins" : [ "themes", "json_data", "dnd", "crrm", "contextmenu"]
     }
 
-    $("#taxonomy_post_tree").jstree(conf)
+    $("#taxonomy_post_tree").jstree(post_conf)
       .bind("move_node.jstree", handle_move_post)
       .bind("remove.jstree", handle_delete_post)
       .bind("create.jstree", handle_create_post)
